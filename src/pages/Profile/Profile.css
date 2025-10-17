@@ -1,0 +1,37 @@
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  scroll-behavior: smooth;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #1e293b;
+  color: #cbd5e1;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1.5px;
+  background: var(--gradient-colors, linear-gradient(90deg, #8b5cf6, #ec4899));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body {
+  overflow-x: hidden;
+}

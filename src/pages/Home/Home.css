@@ -1,0 +1,75 @@
+.home-button::before {
+  content: none;
+}
+
+.home-button.is-rippling::before {
+  content: "";
+  position: fixed;
+  left: calc(var(--ripple-window-x) - var(--ripple-radius));
+  top: calc(var(--ripple-window-y) - var(--ripple-radius));
+  width: calc(var(--ripple-radius) * 2);
+  height: calc(var(--ripple-radius) * 2);
+  background: rgba(59,130,246,0.28);
+  border-radius: 50%;
+  transform: scale(0.01);
+  transform-origin: center;
+  z-index: 9999;
+  pointer-events: none;
+  animation: ripple-expand 2000ms cubic-bezier(.22,.9,.32,1) forwards;
+}
+
+@keyframes ripple-expand {
+  from {
+    transform: scale(0.01);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-button.is-rippling::before {
+    background: rgba(59,130,246,0.22);
+    animation-duration: 2000ms;
+  }
+}
+
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  scroll-behavior: smooth;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #1e293b;
+  color: #cbd5e1;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 1.5px;
+  background: var(--gradient-colors, linear-gradient(90deg, #8b5cf6, #ec4899));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body {
+  overflow-x: hidden;
+}
