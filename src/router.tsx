@@ -7,6 +7,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { Profile } from './pages/Profile/page';
 import { Stone } from './pages/Stone/page'
 import { Path } from './pages/Path/page';
+import { Infusions } from './pages/Infusions/page';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
           { path: '/profile', element: <Profile /> },
           { path: '/stone', element: <Stone /> },
           { path: '/path', element: <Path /> },
+          { path: '/infusions', element: <Infusions /> },
         ],
       },
     ],

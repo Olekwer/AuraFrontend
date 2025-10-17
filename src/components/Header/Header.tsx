@@ -45,7 +45,7 @@ export function Header() {
           Rytuały i Dźwięki
         </NavLink>
         <NavLink
-          to="/napary"
+          to="/infusions"
           className={({ isActive }) =>
             isActive ? activeClass : baseClass
           }

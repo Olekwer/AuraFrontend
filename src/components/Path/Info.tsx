@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TabButton } from './TabButton';
+import { TabButton } from '../Common/TabButton';
 import { AchievementsTab } from './Achievements';
 import { StatisticsTab } from './Statistics';
 
