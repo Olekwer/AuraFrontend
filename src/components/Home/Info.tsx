@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useMemo } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useAuthStore } from '../../store/auth';
 import { MapButton } from '../Buttons/MapButton';
@@ -77,15 +77,15 @@ export function Info() {
   const ANIM_MS = 600;
 
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  const email = useAuthStore((s) => s.email);
-  const firstName = useAuthStore((s) => s.firstName ?? '');
-  const lastName = useAuthStore((s) => s.lastName ?? '');
+  // const email = useAuthStore((s) => s.email);
+  // const firstName = useAuthStore((s) => s.firstName ?? '');
+  // const lastName = useAuthStore((s) => s.lastName ?? '');
   const zodiacSign = useAuthStore((s) => s.zodiacSign ?? '');
-  const element = useAuthStore((s) => s.element ?? '');
+  // const element = useAuthStore((s) => s.element ?? '');
   const isPremium = useAuthStore((s) => s.isPremium ?? false);
   const token = useAuthStore((s) => s.token);
 
-  const userName = useMemo(() => email?.split('@')[0] ?? 'user', [email]);
+  // const userName = useMemo(() => email?.split('@')[0] ?? 'user', [email]);
 
   const handleClick = () => {
     const btn = btnRef.current;
@@ -563,7 +563,7 @@ export function Info() {
         </div>
       )}
 
-      <div className="mt-8 mb-4 text-center">
+      <div className="mb-4 mt-8 text-center">
         <p className="mx-auto text-lg italic text-blue-400/80">
           "Każdy dzień to nowa możliwość połączenia się z energią Ziemi. Twoje
           miejsce mocy czeka."

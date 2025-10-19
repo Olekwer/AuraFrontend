@@ -3,7 +3,6 @@ import { Info } from '../../components/Home/Info';
 import { Header } from '../../components/Header/Header';
 import './Home.css';
 import { useAuthStore } from '../../store/auth';
-import PoemCounter from "../../components/Render"
 
 export function Home() {
   const checkAuthFromCookie = useAuthStore((s) => s.checkAuthFromCookie);
@@ -31,7 +30,7 @@ export function Home() {
             : 'flex flex-col items-stretch justify-start')
         }
       >
-        <Info/>
+        <Info />
         {/*<PoemCounter/>*/}
       </main>
     </div>

@@ -1,4 +1,4 @@
-import { useState, memo, useRef, useMemo } from 'react';
+import { useState, memo, useMemo } from 'react';
 
 type PoemListProps = {
   poems: readonly string[];
@@ -26,7 +26,7 @@ export default memo(function PoemCounter() {
     'Всё ходит по цепи кругом;',
   ]);
   */
-  
+
   const POEMS = useMemo(
     () => [
       'У лукоморья дуб зелёный;',

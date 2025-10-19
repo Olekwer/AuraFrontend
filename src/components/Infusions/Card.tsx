@@ -26,9 +26,7 @@ export function Card({
   title,
   description,
   time,
-  statusType,
   dayPart,
-  benefits,
 }: {
   icon: React.ReactNode;
   title: string;
