@@ -1,5 +1,5 @@
 #root {
-  max-width: 1920px;
+  /* max-width: 1920px; */
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
@@ -45,7 +45,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   display: block;
 }
