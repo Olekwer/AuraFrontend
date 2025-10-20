@@ -8,6 +8,7 @@ import { Profile } from './pages/Profile/page';
 import { Stone } from './pages/Stone/page'
 import { Path } from './pages/Path/page';
 import { Infusions } from './pages/Infusions/page';
+import { Rituals } from './pages/Rituals/page';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
           { path: '/stone', element: <Stone /> },
           { path: '/path', element: <Path /> },
           { path: '/infusions', element: <Infusions /> },
+          { path: '/rituals', element: <Rituals /> },
         ],
       },
     ],
