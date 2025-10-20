@@ -44,21 +44,51 @@ export function Info() {
           onClick={() => setTab('twój')}
           activeClassName="bg-blue-600"
         >
-          Twój kamień
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/achievements/ico1.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Twój kamień
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'według'}
           onClick={() => setTab('według')}
           activeClassName="bg-purple-600"
         >
-          Według celu
+          <div className="flex items-center gap-4">
+            <img
+              src="/stone/tab-icon2.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Według celu
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'kolekcja'}
           onClick={() => setTab('kolekcja')}
           activeClassName="bg-green-600"
         >
-          Kolekcja
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/achievements/ico4.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Kolekcja
+          </div>
         </TabButton>
       </div>
 
@@ -101,7 +131,9 @@ export function Info() {
                     <div className="text-purple-100">{powerStone.hardness}</div>
                   </div>
                   <div className="rounded-lg bg-green-900/30 p-3">
-                    <div className="font-medium text-green-200">Pochodzenie</div>
+                    <div className="font-medium text-green-200">
+                      Pochodzenie
+                    </div>
                     <div className="text-green-100">{powerStone.origin}</div>
                   </div>
                   <div className="rounded-lg bg-gold-900/30 p-3">
@@ -149,7 +181,7 @@ export function Info() {
               </div>
             </div>
 
-            <div className="mt-8 flex justify-center gap-4 flex-wrap">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <button
                 type="button"
                 className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
@@ -181,7 +213,7 @@ export function Info() {
                     typeClassName={typeClassName}
                     description={description}
                   />
-                )
+                ),
               )}
             </div>
           </div>
@@ -190,7 +222,8 @@ export function Info() {
 
       {tab === 'według' && <AppointmentTab />}
 
-      {tab === 'kolekcja' && (<CollectionTab onSwitchToTwojKamien={() => setTab('twój')} />
+      {tab === 'kolekcja' && (
+        <CollectionTab onSwitchToTwojKamien={() => setTab('twój')} />
       )}
     </div>
   );

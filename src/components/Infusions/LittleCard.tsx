@@ -4,7 +4,7 @@ export const littleCards = [
       <div className="rounded-full bg-gradient-to-r from-red-500 to-orange-500 p-2 opacity-70">
         <img
           src="/infusions/ico2.svg"
-          alt="drop icon"
+          alt="cup icon"
           className="h-[14px] w-[14px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',
@@ -21,7 +21,7 @@ export const littleCards = [
       <div className="to-brown-500 rounded-full bg-gradient-to-r from-green-500 p-2 opacity-70">
         <img
           src="/path/achievements/ico5.svg"
-          alt="drop icon"
+          alt="leaf icon"
           className="h-[14px] w-[14px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',
@@ -38,7 +38,7 @@ export const littleCards = [
       <div className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-2 opacity-70">
         <img
           src="/infusions/ico3.svg"
-          alt="drop icon"
+          alt="temperature icon"
           className="h-[14px] w-[14px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',

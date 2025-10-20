@@ -25,7 +25,7 @@ export const cards = [
       <div className="from-slate-400 flex-shrink-0 rounded-full bg-gradient-to-r to-blue-400 p-3">
         <img
           src="/path/achievements/ico8.svg"
-          alt="drop icon"
+          alt="moon icon"
           className="h-[21px] w-[21px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',
@@ -45,7 +45,7 @@ export const cards = [
       <div className="flex-shrink-0 rounded-full bg-gradient-to-r from-gold-900 to-yellow-500 p-3">
         <img
           src="/path/achievements/ico1.svg"
-          alt="drop icon"
+          alt="star icon"
           className="h-[21px] w-[21px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',

@@ -23,28 +23,68 @@ export function Info() {
           onClick={() => setTab('przeglad')}
           activeClassName="bg-blue-600"
         >
-          Przegląd
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/tab-icon1.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Przegląd
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'dziennik'}
           onClick={() => setTab('dziennik')}
           activeClassName="bg-green-600"
         >
-          Dziennik
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/review/ico4.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Dziennik
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'osiagniecia'}
           onClick={() => setTab('osiagniecia')}
           activeClassName="bg-purple-600"
         >
-          Osiągnięcia
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/achievements/ico2.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Osiągnięcia
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'statystyki'}
           onClick={() => setTab('statystyki')}
           activeClassName="bg-gold-200"
         >
-          Statystyki
+          <div className="flex items-center gap-4">
+            <img
+              src="/stone/tab-icon2.svg"
+              alt="star icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Statystyki
+          </div>
         </TabButton>
       </div>
 
@@ -204,7 +244,7 @@ export function Info() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8 text-center text-blue-100 mb-8">
+          <div className="mb-8 flex flex-col items-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8 text-center text-blue-100">
             <img
               src="/path/review/ico4.svg"
               alt="blue icon"
@@ -231,7 +271,9 @@ export function Info() {
         style={{ fontFamily: '"Noto Serif", serif' }}
       >
         <p className="px-[142px]">
-          Każdy krok na duchowej ścieżce jest cennym doświadczeniem. Nie porównuj swojej podróży z innymi - Twoja droga jest unikalna i doskonała tak, jak jest.
+          Każdy krok na duchowej ścieżce jest cennym doświadczeniem. Nie
+          porównuj swojej podróży z innymi - Twoja droga jest unikalna i
+          doskonała tak, jak jest.
         </p>
       </div>
     </div>

@@ -21,14 +21,34 @@ export function Info() {
           onClick={() => setTab('napary')}
           activeClassName="bg-green-600"
         >
-          Przegląd
+          <div className="flex gap-4 items-center">
+            <img
+              src="/path/achievements/ico5.svg"
+              alt="leaf icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Napary ziołowe
+          </div>
         </TabButton>
         <TabButton
           isActive={tab === 'olejki'}
           onClick={() => setTab('olejki')}
           activeClassName="bg-purple-600"
         >
-          Dziennik
+          <div className="flex gap-4 items-center">
+            <img
+              src="/infusions/ico1.svg"
+              alt="drop icon"
+              className="h-[14px] w-[14px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Olejki i maści
+          </div>
         </TabButton>
       </div>
 
