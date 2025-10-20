@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TabButton } from '../Common/TabButton';
 import { cards, Card } from './Card';
+import { littleCards, LittleCard } from './LittleCard';
 
 export function Info() {
   const [tab, setTab] = useState<'napary' | 'olejki'>('napary');
@@ -32,44 +33,64 @@ export function Info() {
       </div>
 
       {tab === 'napary' && (
-        <div>
-          <h2 className="mb-6 flex gap-2 items-center text-2xl font-medium text-blue-100">
-            <img
-              src="/path/achievements/ico1.svg"
-              alt="star icon"
-              className="h-[21px] w-[21px] filter"
-              style={{
-                filter: 'invert(100%) brightness(100%)',
-              }}
-            />
-            Spersonalizowane dla Twojego żywiołu
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {cards.map(
-              (
-                {
-                  icon,
-                  title,
-                  description,
-                  time,
-                  statusType,
-                  dayPart,
-                  benefits,
-                },
-                idx,
-              ) => (
-                <Card
+        <div className="space-y-8">
+          <div>
+            <h2 className="mb-6 flex items-center gap-2 text-2xl font-medium text-blue-100">
+              <img
+                src="/path/achievements/ico1.svg"
+                alt="star icon"
+                className="h-[21px] w-[21px] filter"
+                style={{
+                  filter: 'invert(100%) brightness(100%)',
+                }}
+              />
+              Spersonalizowane dla Twojego żywiołu
+            </h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {cards.map(
+                (
+                  {
+                    icon,
+                    title,
+                    description,
+                    time,
+                    statusType,
+                    dayPart,
+                    benefits,
+                    isFavourite,
+                  },
+                  idx,
+                ) => (
+                  <Card
+                    key={idx}
+                    icon={icon}
+                    title={title}
+                    description={description}
+                    time={time}
+                    statusType={statusType}
+                    dayPart={dayPart}
+                    benefits={benefits}
+                    isFavourite={isFavourite}
+                  />
+                ),
+              )}
+            </div>
+          </div>
+          <div>
+            <h2 className="mb-6 text-left text-2xl font-medium text-blue-100">
+              Dodatkowe mieszanki ziołowe
+            </h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {littleCards.map(({ icon, title, description, time }, idx) => (
+                <LittleCard
                   key={idx}
                   icon={icon}
                   title={title}
                   description={description}
                   time={time}
-                  statusType={statusType}
-                  dayPart={dayPart}
-                  benefits={benefits}
                 />
-              ),
-            )}
+              ))}
+            </div>
           </div>
         </div>
       )}

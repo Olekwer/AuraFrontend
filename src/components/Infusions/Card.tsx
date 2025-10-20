@@ -18,10 +18,11 @@ export const cards = [
     statusType: 'łatwy',
     dayPart: 'wieczór',
     benefits: ['Uspokaja nerwy', 'Poprawia sen', 'Łagodzi lęk'],
+    isFavourite: true,
   },
   {
     icon: (
-      <div className="from-silver-400 flex-shrink-0 rounded-full bg-gradient-to-r to-blue-400 p-3">
+      <div className="from-slate-400 flex-shrink-0 rounded-full bg-gradient-to-r to-blue-400 p-3">
         <img
           src="/path/achievements/ico8.svg"
           alt="drop icon"
@@ -73,6 +74,7 @@ export function Card({
   statusType,
   dayPart,
   benefits,
+  isFavourite,
 }: {
   icon: React.ReactNode;
   title: string;
@@ -81,6 +83,7 @@ export function Card({
   statusType: string;
   dayPart: string;
   benefits: string[];
+  isFavourite?: boolean;
 }) {
   return (
     <div>
@@ -90,11 +93,15 @@ export function Card({
           <div className="flex-1">
             <div className="mb-2 flex items-center space-x-2">
               <h3 className="text-lg font-medium text-blue-100">{title}</h3>
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-gold-900/30 bg-gold-900/20 px-2 py-0.5 text-xs font-medium text-gold-200 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                Dla Ciebie
-              </span>
+              {isFavourite && (
+                <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-gold-900/30 bg-gold-900/20 px-2 py-0.5 text-xs font-medium text-gold-200 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+                  Dla Ciebie
+                </span>
+              )}
             </div>
-            <p className="mb-3 text-sm text-blue-300/80 text-left">{description}</p>
+            <p className="mb-3 text-left text-sm text-blue-300/80">
+              {description}
+            </p>
             <div className="mb-4 flex items-center space-x-4">
               <span className="flex items-center gap-1 text-sm text-blue-300">
                 <img
@@ -121,25 +128,29 @@ export function Card({
                 </span>
               )}
               <span className="flex items-center gap-1 text-sm text-blue-400/60">
-                {dayPart === 'wieczór' ? (<img
-                  src="/path/achievements/ico8.svg"
-                  alt="little moon icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter:
-                      'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
-                    opacity: 0.8,
-                  }}
-                />) : (<img
-                  src="/infusions/little-ico4.svg"
-                  alt="little sun icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter:
-                      'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
-                    opacity: 0.8,
-                  }}
-                />)}
+                {dayPart === 'wieczór' ? (
+                  <img
+                    src="/path/achievements/ico8.svg"
+                    alt="little moon icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter:
+                        'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
+                      opacity: 0.8,
+                    }}
+                  />
+                ) : (
+                  <img
+                    src="/infusions/little-ico4.svg"
+                    alt="little sun icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter:
+                        'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
+                      opacity: 0.8,
+                    }}
+                  />
+                )}
                 {dayPart}
               </span>
             </div>
