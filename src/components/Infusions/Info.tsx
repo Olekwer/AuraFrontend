@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TabButton } from '../Common/TabButton';
 import { cards, Card } from './Card';
 import { littleCards, LittleCard } from './LittleCard';
+import { bigCards, BigCard } from './BigCard';
 
 export function Info() {
   const [tab, setTab] = useState<'napary' | 'olejki'>('napary');
@@ -21,7 +22,7 @@ export function Info() {
           onClick={() => setTab('napary')}
           activeClassName="bg-green-600"
         >
-          <div className="flex gap-4 items-center">
+          <div className="flex items-center gap-4">
             <img
               src="/path/achievements/ico5.svg"
               alt="leaf icon"
@@ -38,7 +39,7 @@ export function Info() {
           onClick={() => setTab('olejki')}
           activeClassName="bg-purple-600"
         >
-          <div className="flex gap-4 items-center">
+          <div className="flex items-center gap-4">
             <img
               src="/infusions/ico1.svg"
               alt="drop icon"
@@ -115,7 +116,38 @@ export function Info() {
         </div>
       )}
 
-      {tab === 'olejki' && <div></div>}
+      {tab === 'olejki' && (
+        <div>
+          <h2 className="mb-6 text-2xl font-medium text-blue-100">
+            Olejki eteryczne i naturalne maści
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {bigCards.map(
+              (
+                {
+                  iconClassName,
+                  title,
+                  targetType,
+                  description,
+                  ingredients,
+                  methodOfUse,
+                },
+                idx,
+              ) => (
+                <BigCard
+                  key={idx}
+                  iconClassName={iconClassName}
+                  title={title}
+                  targetType={targetType}
+                  description={description}
+                  ingredients={ingredients}
+                  methodOfUse={methodOfUse}
+                />
+              ),
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
