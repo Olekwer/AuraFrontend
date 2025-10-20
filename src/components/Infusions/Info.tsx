@@ -33,7 +33,7 @@ export function Info() {
 
       {tab === 'napary' && (
         <div>
-          <h2 className="mb-6 flex items-center text-2xl font-medium text-blue-100">
+          <h2 className="mb-6 flex gap-2 items-center text-2xl font-medium text-blue-100">
             <img
               src="/path/achievements/ico1.svg"
               alt="star icon"

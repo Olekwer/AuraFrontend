@@ -317,7 +317,7 @@ export function Info() {
           <div className="flex min-h-[160px] flex-col justify-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8">
             <div className="mb-6 flex items-start justify-between">
               <div>
-                <h3 className="mb-2 text-2xl font-medium text-blue-100">
+                <h3 className="mb-2 text-2xl font-medium text-blue-100 text-left">
                   Twoja energia dziś
                 </h3>
                 <p className="text-blue-300/80">
@@ -339,7 +339,7 @@ export function Info() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-blue-200">Poziom energii</span>
-                  <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive [a&]:hover:bg-primary/90 inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-blue-500 to-cyan-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+                  <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-blue-500 to-cyan-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
                     {energyDashboard.energy.percentage}%
                   </span>
                 </div>
@@ -535,7 +535,7 @@ export function Info() {
                 przepowiednie lunarne i zaawansowane techniki manifestacji.
               </p>
               <div className="flex justify-center space-x-4 text-white">
-                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-primary/90 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
                   <img
                     src="path/achievements/ico1.svg"
                     alt="little star icon"
