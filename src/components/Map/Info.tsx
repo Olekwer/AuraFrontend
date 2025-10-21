@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import markersData from '../../pages/Map/Map.json';
 import { TabButton } from '../Common/TabButton';
+import { recommendedCards, RecommendedCard } from './RecommendedCard';
 
 mapboxgl.accessToken =
   import.meta.env.VITE_MAPBOX_TOKEN ||
@@ -170,7 +171,35 @@ export function Info() {
         <div ref={mapContainer} className="h-screen w-full" />
       </div>
 
-      {tab === 'Lista' && <div></div>}
+      {tab === 'Lista' && (
+        <div>
+          <h2 className="mb-4 flex gap-2 items-center text-2xl font-medium text-blue-100">
+            <img
+              src="path/achievements/ico1.svg"
+              alt="little star icon"
+              className="h-[21px] w-[21px] filter"
+              style={{
+                filter: 'invert(100%) brightness(100%)',
+              }}
+            />
+            Polecane dla Twojego żywiołu (water)
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {recommendedCards.map(
+              ({ icon, title, description, length, statusType }, idx) => (
+                <RecommendedCard
+                  key={idx}
+                  icon={icon}
+                  title={title}
+                  description={description}
+                  length={length}
+                  statusType={statusType}
+                />
+              ),
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
