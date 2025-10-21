@@ -2,11 +2,18 @@ import { useState } from 'react';
 import { TabButton } from '../Common/TabButton';
 import { AchievementsTab } from './Achievements';
 import { StatisticsTab } from './Statistics';
+import { NewEntry } from './NewEntry';
 
 export function Info() {
   const [tab, setTab] = useState<
     'przeglad' | 'dziennik' | 'osiagniecia' | 'statystyki'
   >('przeglad');
+
+  const [showNewEntry, setShowNewEntry] = useState(false);
+
+  const handleToggleNewEntry = () => {
+    setShowNewEntry((prev) => !prev);
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 p-6 pt-16">
@@ -212,36 +219,40 @@ export function Info() {
 
       {tab === 'dziennik' && (
         <div className="flex w-full max-w-7xl flex-col gap-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-medium text-blue-100">
-              Dziennik duchowej podróży
-            </h2>
-            <div className="flex gap-4">
-              <button
-                type="button"
-                className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
-              >
-                <img
-                  src="/path/review/activities-button-icon.svg"
-                  alt="nowy wpis icon"
-                  className="h-[14px] w-[14px]"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                Nowy wpis
-              </button>
-              <button
-                type="button"
-                className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
-              >
-                <img
-                  src="/stone/appointment/download-icon.svg"
-                  alt="nowy wpis icon"
-                  className="h-[14px] w-[14px]"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                Export PDF
-              </button>
+          <div>
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-2xl font-medium text-blue-100">
+                Dziennik duchowej podróży
+              </h2>
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                  onClick={handleToggleNewEntry}
+                >
+                  <img
+                    src="/path/review/activities-button-icon.svg"
+                    alt="nowy wpis icon"
+                    className="h-[14px] w-[14px]"
+                    style={{ filter: 'invert(100%) brightness(100%)' }}
+                  />
+                  Nowy wpis
+                </button>
+                <button
+                  type="button"
+                  className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                >
+                  <img
+                    src="/stone/appointment/download-icon.svg"
+                    alt="nowy wpis icon"
+                    className="h-[14px] w-[14px]"
+                    style={{ filter: 'invert(100%) brightness(100%)' }}
+                  />
+                  Export PDF
+                </button>
+              </div>
             </div>
+            {showNewEntry && <NewEntry />}
           </div>
 
           <div className="mb-8 flex flex-col items-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8 text-center text-blue-100">
