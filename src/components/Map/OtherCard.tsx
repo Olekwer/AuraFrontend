@@ -55,7 +55,7 @@ export const otherCards = [
       <div className="to-brown-500 rounded-full bg-gradient-to-r from-green-500 p-2 opacity-70">
         <img
           src="/path/achievements/ico1.svg"
-          alt="wind icon"
+          alt="star icon"
           className="h-[14px] w-[14px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',

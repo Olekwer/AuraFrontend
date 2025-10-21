@@ -21,10 +21,11 @@ const powerPlaceCenter: [number, number] = [31.1342, 29.9792];
 export function Info() {
   const [tab, setTab] = useState<'Mapa' | 'Lista'>('Mapa');
 
-  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
-  const markerObjects = useRef<Record<string, mapboxgl.Marker>>({});
+  const markersRef = useRef<Record<string, mapboxgl.Marker>>({});
   const popupRef = useRef<mapboxgl.Popup | null>(null);
+  const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
   const [markers] = useState<MarkerData[]>(
     markersData.map((m) => ({
@@ -35,43 +36,59 @@ export function Info() {
     })),
   );
 
-  useEffect(() => {
-    if (!mapContainer.current || mapRef.current) return;
+  const initMap = () => {
+    if (!mapContainerRef.current) return;
+    if (mapRef.current) return;
 
     const map = new mapboxgl.Map({
-      container: mapContainer.current,
+      container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: powerPlaceCenter,
       zoom: 12,
     });
+
     mapRef.current = map;
 
-    map.on('load', () => {
+    popupRef.current = new mapboxgl.Popup({ offset: 25, closeOnMove: true });
+
+    const onLoad = () => {
       map.resize();
-    });
+      requestAnimationFrame(() => map.resize());
+      renderMarkers();
+    };
+
+    map.on('load', onLoad);
 
     map.on('click', (e) => {
       console.log('Clicked coordinates:', e.lngLat.lng, e.lngLat.lat);
     });
 
-    popupRef.current = new mapboxgl.Popup({ offset: 25, closeOnMove: true });
+    if (mapContainerRef.current) {
+      const ro = new ResizeObserver(() => {
+        map.resize();
+      });
+      ro.observe(mapContainerRef.current);
+      resizeObserverRef.current = ro;
+    }
+  };
 
-    return () => {
-      Object.values(markerObjects.current).forEach((m) => m.remove());
-      markerObjects.current = {};
-      popupRef.current?.remove();
-      popupRef.current = null;
-      map.remove();
-      mapRef.current = null;
-    };
-  }, []);
+  const destroyMap = () => {
+    Object.values(markersRef.current).forEach((m) => m.remove());
+    markersRef.current = {};
+    popupRef.current?.remove();
+    popupRef.current = null;
+    resizeObserverRef.current?.disconnect();
+    resizeObserverRef.current = null;
+    mapRef.current?.remove();
+    mapRef.current = null;
+  };
 
-  useEffect(() => {
+  const renderMarkers = () => {
     const map = mapRef.current;
     if (!map) return;
 
-    Object.values(markerObjects.current).forEach((m) => m.remove());
-    markerObjects.current = {};
+    Object.values(markersRef.current).forEach((m) => m.remove());
+    markersRef.current = {};
 
     markers.forEach(({ id, coords, color, title }) => {
       const el = document.createElement('div');
@@ -98,35 +115,29 @@ export function Info() {
         popupRef.current?.remove();
       });
 
-      markerObjects.current[id] = marker;
+      markersRef.current[id] = marker;
     });
-  }, [markers]);
+  };
 
   useEffect(() => {
-    const container = mapContainer.current;
-    const map = mapRef.current;
-    if (!container || !map) return;
-
-    const ro = new ResizeObserver(() => {
-      map.resize();
-    });
-    ro.observe(container);
+    if (tab === 'Mapa') {
+      initMap();
+    } else {
+      destroyMap();
+    }
 
     return () => {
-      ro.disconnect();
+      if (tab === 'Mapa') {
+        destroyMap();
+      }
     };
-  }, []);
+  }, [tab]);
 
   useEffect(() => {
-    if (tab !== 'Mapa') return;
-    const map = mapRef.current;
-    if (!map) return;
-
-    const id = requestAnimationFrame(() => {
-      map.resize();
-    });
-    return () => cancelAnimationFrame(id);
-  }, [tab]);
+    if (mapRef.current) {
+      renderMarkers();
+    }
+  }, [markers]);
 
   return (
     <div className="w-full">
@@ -162,15 +173,11 @@ export function Info() {
           </div>
         </TabButton>
       </div>
-      <div
-        className={
-          tab === 'Mapa'
-            ? 'relative block'
-            : 'pointer-events-none relative block opacity-0 [visibility:hidden]'
-        }
-      >
-        <div ref={mapContainer} className="h-screen w-full" />
-      </div>
+      {tab === 'Mapa' && (
+        <div className="relative">
+          <div ref={mapContainerRef} className="h-screen w-full" />
+        </div>
+      )}
 
       {tab === 'Lista' && (
         <div className="space-y-6">
@@ -202,7 +209,7 @@ export function Info() {
             </div>
           </div>
           <div>
-            <h2 className="mb-4 text-2xl font-medium text-blue-100 text-left">
+            <h2 className="mb-4 text-left text-2xl font-medium text-blue-100">
               Inne miejsca mocy
             </h2>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
