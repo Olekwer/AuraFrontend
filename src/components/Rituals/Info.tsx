@@ -1,3 +1,7 @@
+import {
+  additionalRitualCards,
+  AdditionalRitualCard,
+} from './AdditionalRitualCard';
 import { cards, Card } from './Card';
 import { soundCards, SoundCard } from './SoundCard';
 
@@ -53,7 +57,7 @@ export function Info() {
         </div>
       </div>
       <div>
-        <h2 className="mb-6 flex gap-2 items-center text-2xl font-medium text-blue-100">
+        <h2 className="mb-6 flex items-center gap-2 text-2xl font-medium text-blue-100">
           <img
             src="/ico10.svg"
             alt="headphones icon"
@@ -77,11 +81,21 @@ export function Info() {
         </div>
       </div>
       <div>
-        <h2 className="mb-6 text-2xl font-medium text-blue-100">
+        <h2 className="mb-6 text-2xl font-medium text-blue-100 text-left">
           Dodatkowe rytuały
         </h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {/*additionalRitualCard*/}
+          {additionalRitualCards.map(
+            ({ icon, title, time, description }, idx) => (
+              <AdditionalRitualCard
+                key={idx}
+                icon={icon}
+                title={title}
+                time={time}
+                description={description}
+              />
+            ),
+          )}
         </div>
       </div>
     </div>

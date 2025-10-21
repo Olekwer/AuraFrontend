@@ -80,7 +80,7 @@ export function Card({
       </button>
       <button
         type="button"
-        className="dark:bg-input/30 dark:border-input dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+        className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <img alt="add-icon" className="h-[14px] w-[14px]" src="/add-icon.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />Dodaj
       </button>
