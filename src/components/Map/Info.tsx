@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import markersData from '../../pages/Map/Map.json';
+import { TabButton } from '../Common/TabButton';
 
 mapboxgl.accessToken =
   import.meta.env.VITE_MAPBOX_TOKEN ||
@@ -16,9 +17,12 @@ interface MarkerData {
 const powerPlaceCenter: [number, number] = [31.1342, 29.9792];
 
 export function Info() {
+  const [tab, setTab] = useState<'Mapa' | 'Lista'>('Mapa');
+
   const mapContainer = useRef<HTMLDivElement | null>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
   const markerObjects = useRef<Record<string, mapboxgl.Marker>>({});
+  const popupRef = useRef<mapboxgl.Popup | null>(null);
 
   const [markers] = useState<MarkerData[]>(
     markersData.map((m) => ({
@@ -30,33 +34,39 @@ export function Info() {
   );
 
   useEffect(() => {
-    if (!mapContainer.current || map.current) return;
+    if (!mapContainer.current || mapRef.current) return;
 
-    map.current = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: powerPlaceCenter,
       zoom: 12,
     });
+    mapRef.current = map;
 
-    map.current.on('load', () => {
-      map.current?.resize();
+    map.on('load', () => {
+      map.resize();
     });
 
-    map.current.on('click', (e) => {
+    map.on('click', (e) => {
       console.log('Clicked coordinates:', e.lngLat.lng, e.lngLat.lat);
     });
+
+    popupRef.current = new mapboxgl.Popup({ offset: 25, closeOnMove: true });
 
     return () => {
       Object.values(markerObjects.current).forEach((m) => m.remove());
       markerObjects.current = {};
-      map.current?.remove();
-      map.current = null;
+      popupRef.current?.remove();
+      popupRef.current = null;
+      map.remove();
+      mapRef.current = null;
     };
   }, []);
 
   useEffect(() => {
-    if (!map.current) return;
+    const map = mapRef.current;
+    if (!map) return;
 
     Object.values(markerObjects.current).forEach((m) => m.remove());
     markerObjects.current = {};
@@ -71,41 +81,96 @@ export function Info() {
       el.style.boxShadow = '0 0 5px rgba(0,0,0,0.5)';
       el.style.cursor = 'pointer';
 
-      const popup = new mapboxgl.Popup({ offset: 25 }).setText(title);
+      const marker = new mapboxgl.Marker(el, { anchor: 'center' })
+        .setLngLat(coords)
+        .addTo(map);
 
       el.addEventListener('click', (e) => {
         e.stopPropagation();
-        popup.setLngLat(coords).addTo(map.current!);
+        popupRef.current?.setLngLat(coords).setText(title).addTo(map);
       });
-
       el.addEventListener('mouseenter', () => {
-        popup.setLngLat(coords).addTo(map.current!);
+        popupRef.current?.setLngLat(coords).setText(title).addTo(map);
       });
-
       el.addEventListener('mouseleave', () => {
-        popup.remove();
+        popupRef.current?.remove();
       });
-
-      const marker = new mapboxgl.Marker(el, { anchor: 'center' })
-        .setLngLat(coords)
-        .addTo(map.current!);
 
       markerObjects.current[id] = marker;
     });
   }, [markers]);
 
   useEffect(() => {
-    if (!mapContainer.current || !map.current) return;
+    const container = mapContainer.current;
+    const map = mapRef.current;
+    if (!container || !map) return;
 
-    const resizeObserver = new ResizeObserver(() => {
-      map.current?.resize();
+    const ro = new ResizeObserver(() => {
+      map.resize();
     });
-    resizeObserver.observe(mapContainer.current);
+    ro.observe(container);
 
     return () => {
-      resizeObserver.disconnect();
+      ro.disconnect();
     };
   }, []);
 
-  return <div ref={mapContainer} className="h-screen" />;
+  useEffect(() => {
+    if (tab !== 'Mapa') return;
+    const map = mapRef.current;
+    if (!map) return;
+
+    const id = requestAnimationFrame(() => {
+      map.resize();
+    });
+    return () => cancelAnimationFrame(id);
+  }, [tab]);
+
+  return (
+    <div className="w-full">
+      <div className="mb-8 flex flex-wrap justify-center gap-4">
+        <TabButton
+          isActive={tab === 'Mapa'}
+          onClick={() => setTab('Mapa')}
+          activeClassName="bg-blue-600"
+        >
+          <div className="flex items-center gap-4">
+            <img
+              src="/path/achievements/ico3.svg"
+              alt="map point icon"
+              className="h-[14px] w-[14px] filter"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
+            Mapa
+          </div>
+        </TabButton>
+        <TabButton
+          isActive={tab === 'Lista'}
+          onClick={() => setTab('Lista')}
+          activeClassName="bg-blue-600"
+        >
+          <div className="flex items-center gap-4">
+            <img
+              src="/map/ico1.svg"
+              alt="info icon"
+              className="h-[14px] w-[14px] filter"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
+            Lista
+          </div>
+        </TabButton>
+      </div>
+      <div
+        className={
+          tab === 'Mapa'
+            ? 'relative block'
+            : 'pointer-events-none relative block opacity-0 [visibility:hidden]'
+        }
+      >
+        <div ref={mapContainer} className="h-screen w-full" />
+      </div>
+
+      {tab === 'Lista' && <div></div>}
+    </div>
+  );
 }

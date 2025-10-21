@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TabButton } from './TabButton';
+import { TabButton } from '../Common/TabButton';
 import { cards, Card } from './Card';
 import { AppointmentTab } from './Appointment';
 import { CollectionTab } from './Collection';
