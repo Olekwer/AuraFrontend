@@ -4,7 +4,7 @@ export const recommendedCards = [
       <div className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-3">
         <img
           src="/rituals/ico1.svg"
-          alt="wind icon"
+          alt="wave icon"
           className="h-[21px] w-[21px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',
@@ -23,7 +23,7 @@ export const recommendedCards = [
       <div className="flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-3">
         <img
           src="/rituals/ico1.svg"
-          alt="wind icon"
+          alt="wave icon"
           className="h-[21px] w-[21px] filter"
           style={{
             filter: 'invert(100%) brightness(100%)',
