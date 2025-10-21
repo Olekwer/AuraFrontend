@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const cards = [
   {
     icon: (
@@ -53,12 +55,14 @@ export function Card({
   type,
   typeClassName,
   description,
+  onShowDetails,
 }: {
   icon: React.ReactNode;
   title: string;
   type: string;
   typeClassName: string;
   description: string;
+  onShowDetails?: (title: string) => void;
 }) {
   return (
     <div className="flex flex-col rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6 text-center text-blue-100">
@@ -74,6 +78,7 @@ export function Card({
       <p className="mb-10 text-sm text-blue-300/60">{description}</p>
       <button
         type="button"
+        onClick={() => onShowDetails?.(title)}
         className="focus-visible:border-ring focus-visible:ring-ring/50 mb-2 inline-flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
       >
         Zobacz właściwości

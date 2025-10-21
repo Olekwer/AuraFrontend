@@ -1,33 +1,72 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TabButton } from '../Common/TabButton';
 import { cards, Card } from './Card';
 import { AppointmentTab } from './Appointment';
 import { CollectionTab } from './Collection';
+import { descriptions, DescriptionModal } from './DescriptionModal';
 
 export function Info() {
   const [tab, setTab] = useState<'twój' | 'według' | 'kolekcja'>('twój');
 
+  const [openDescription, setOpenDescription] = useState<{
+    title: string;
+    description: string;
+    medicinalProperties: string[];
+    stoneCare: string[];
+    rituals: string[];
+    chakra: string;
+    hardness: string;
+    origin: string;
+    cost: string;
+  } | null>(null);
+
   const powerStone = {
-    name: 'Sunstone',
+    title: 'Sunstone',
     description: 'Stone of leadership and confidence.',
-    chakra: 'Gardłowa',
-    hardness: '7.5-8',
-    origin: 'Brazylia, Pakistan',
-    price: '50-200 zł',
-    spiritualProperties: [
+    medicinalProperties: [
       'Uspokaja emocje',
       'Oczyszcza aurę',
       'Wzmacnia intuicję',
       'Pomaga w komunikacji',
       'Łagodzi lęk',
     ],
-    usageWays: [
+    rituals: [
       'Medytacja z kamieniem na gardle',
       'Kąpiel z kamieniem słonecznym',
       'Noszenie przy sercu',
       'Ładowanie w świetle księżyca',
     ],
+    chakra: 'Gardłowa',
+    hardness: '7.5-8',
+    origin: 'Brazylia, Pakistan',
+    cost: '50-200 zł',
   };
+
+  const byTitle = useMemo(() => {
+    const map = new Map<
+      string,
+      {
+        title: string;
+        description: string;
+        medicinalProperties: string[];
+        stoneCare: string[];
+        rituals: string[];
+        chakra: string;
+        hardness: string;
+        origin: string;
+        cost: string;
+      }
+    >();
+    for (const d of descriptions) map.set(d.title, d);
+    return map;
+  }, []);
+
+  const handleShowDetails = (title: string) => {
+    const found = byTitle.get(title);
+    if (found) setOpenDescription(found);
+  };
+
+  const handleCloseModal = () => setOpenDescription(null);
 
   return (
     <div className="mx-auto max-w-7xl p-4 sm:p-6">
@@ -109,13 +148,13 @@ export function Info() {
                 <div className="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 shadow-2xl">
                   <img
                     src="/stone-icon.svg"
-                    alt={powerStone.name}
+                    alt={powerStone.title}
                     className="h-16 w-16"
                     style={{ filter: 'invert(100%) brightness(100%)' }}
                   />
                 </div>
                 <h3 className="mb-2 text-2xl font-medium text-blue-100">
-                  {powerStone.name}
+                  {powerStone.title}
                 </h3>
                 <p className="mb-6 px-4 text-center text-blue-300/80">
                   {powerStone.description}
@@ -138,7 +177,7 @@ export function Info() {
                   </div>
                   <div className="rounded-lg bg-gold-900/30 p-3">
                     <div className="font-medium text-yellow-300">Cena</div>
-                    <div className="text-yellow-200">{powerStone.price}</div>
+                    <div className="text-yellow-200">{powerStone.cost}</div>
                   </div>
                 </div>
               </div>
@@ -149,7 +188,7 @@ export function Info() {
                     Właściwości duchowe
                   </h3>
                   <div className="grid grid-cols-1 gap-2 text-left">
-                    {powerStone.spiritualProperties.map((prop, i) => (
+                    {powerStone.medicinalProperties.map((prop, i) => (
                       <div
                         key={i}
                         className="rounded-lg bg-cyan-900/20 p-2 text-sm text-cyan-200"
@@ -165,7 +204,7 @@ export function Info() {
                     Sposoby użycia
                   </h3>
                   <div className="space-y-2">
-                    {powerStone.usageWays.map((way, i) => (
+                    {powerStone.rituals.map((way, i) => (
                       <div
                         key={i}
                         className="flex items-center text-sm text-purple-200"
@@ -212,6 +251,7 @@ export function Info() {
                     type={type}
                     typeClassName={typeClassName}
                     description={description}
+                    onShowDetails={handleShowDetails}
                   />
                 ),
               )}
@@ -224,6 +264,10 @@ export function Info() {
 
       {tab === 'kolekcja' && (
         <CollectionTab onSwitchToTwojKamien={() => setTab('twój')} />
+      )}
+
+      {openDescription && (
+        <DescriptionModal {...openDescription} onClose={handleCloseModal} />
       )}
     </div>
   );
