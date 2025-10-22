@@ -553,46 +553,40 @@ export function Info() {
       </div>
 
       {!isPremium && (
-        <div>
-          <div className="mt-8 flex flex-col gap-6 rounded-xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 to-blue-900/40 p-8">
+        <div className="mt-8">
+          <div className="flex flex-col gap-6 rounded-xl border border-purple-500/30 bg-gradient-to-r from-purple-900/40 to-blue-900/40 p-6 sm:p-8">
             <div className="text-center">
               <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
                 <img
                   src="/ico6.svg"
                   alt="big star shine icon"
                   className="h-7 w-7 filter"
-                  style={{
-                    filter: 'invert(100%) brightness(100%)',
-                  }}
+                  style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
               </div>
-              <h3 className="mb-4 text-2xl font-medium text-blue-100">
+              <h3 className="mb-4 text-xl font-medium text-blue-100">
                 Odblokuj Ścieżkę Astrologiczną
               </h3>
-              <p className="mx-auto mb-6 max-w-2xl text-blue-300/80">
+              <p className="mx-auto mb-6 max-w-xl text-sm text-blue-300/80">
                 Pogłęb swoją praktykę o spersonalizowane rytuały astrologiczne,
                 przepowiednie lunarne i zaawansowane techniki manifestacji.
               </p>
-              <div className="flex justify-center space-x-4 text-white">
-                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+              <div className="flex flex-wrap justify-center gap-4 space-x-4 text-white sm:flex-nowrap">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm md:text-xs font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
                   <img
                     src="path/achievements/ico1.svg"
                     alt="little star icon"
                     className="h-[14px] w-[14px] filter"
-                    style={{
-                      filter: 'invert(100%) brightness(100%)',
-                    }}
+                    style={{ filter: 'invert(100%) brightness(100%)' }}
                   />
                   Ścieżka Astrologiczna +9,99 zł
                 </button>
-                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-purple-500/30 px-4 py-2 text-sm font-medium text-purple-300 outline-none transition-all hover:bg-purple-500/10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-purple-500/30 px-4 py-2 text-sm md:text-xs font-medium text-purple-300 outline-none transition-all hover:bg-purple-500/10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
                   <img
                     src="/stone/appointment/download-icon.svg"
                     alt="little download icon"
                     className="h-[14px] w-[14px] filter"
-                    style={{
-                      filter: 'invert(100%) brightness(100%)',
-                    }}
+                    style={{ filter: 'invert(100%) brightness(100%)' }}
                   />
                   Rytuał zdjęcia klątwy
                 </button>

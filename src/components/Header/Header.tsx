@@ -141,10 +141,16 @@ export function Header() {
 
           <button
             type="button"
-            className="focus-visible:ring-ring/50 focus-visible:border-ring aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-auto max-w-[45%] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-800/50 px-2.5 py-1.5 text-xs font-medium text-blue-200 outline-none transition-all hover:bg-slate-700/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 sm:max-w-none sm:px-3 sm:py-2 sm:text-sm [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+            className="focus-visible:ring-ring/50 focus-visible:border-ring aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-auto max-w-[55%] shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-800/50 px-2.5 py-1.5 text-xs font-medium text-blue-200 outline-none transition-all hover:bg-slate-700/50 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 sm:max-w-none sm:px-3 sm:py-2 sm:text-sm [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
             aria-label="Nowy quiz"
             onClick={() => alert('Nowy quiz')}
           >
+            <img
+              src="header/ico1.svg"
+              alt="header user icon"
+              className="h-[14px] w-[14px] filter"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
             Nowy quiz
           </button>
         </div>
