@@ -18,6 +18,22 @@ interface MarkerData {
 
 const powerPlaceCenter: [number, number] = [31.1342, 29.9792];
 
+const icons = [
+  '/rituals/additionalRitualCard/ico2.svg',
+  '/rituals/ico1.svg',
+  '/path/achievements/ico1.svg',
+  '/rituals/additionalRitualCard/ico1.svg',
+  '/stone/ico1.svg',
+];
+
+const iconBgClasses = [
+  'relative z-10 w-6 h-6 rounded-full bg-gradient-to-r from-green-500 to-brown-500 shadow-lg flex items-center justify-center',
+  'relative z-10 w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg flex items-center justify-center ring-2 ring-gold-400',
+  'relative z-10 w-6 h-6 rounded-full bg-gradient-to-r from-green-500 to-brown-500 shadow-lg flex items-center justify-center',
+  'relative z-10 w-6 h-6 rounded-full bg-gradient-to-r from-red-500 to-orange-500 shadow-lg flex items-center justify-center',
+  'relative z-10 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg flex items-center justify-center',
+];
+
 export function Info() {
   const [tab, setTab] = useState<'Mapa' | 'Lista'>('Mapa');
 
@@ -42,7 +58,7 @@ export function Info() {
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mapbox/navigation-night-v1',
       center: powerPlaceCenter,
       zoom: 12,
     });
@@ -90,15 +106,21 @@ export function Info() {
     Object.values(markersRef.current).forEach((m) => m.remove());
     markersRef.current = {};
 
-    markers.forEach(({ id, coords, color, title }) => {
+    markers.forEach(({ id, coords, title }, idx) => {
       const el = document.createElement('div');
-      el.className = 'custom-marker';
-      el.style.backgroundColor = color;
-      el.style.width = '20px';
-      el.style.height = '20px';
-      el.style.borderRadius = '50%';
-      el.style.boxShadow = '0 0 5px rgba(0,0,0,0.5)';
+      el.className = iconBgClasses[idx % iconBgClasses.length];
+
       el.style.cursor = 'pointer';
+
+      const img = document.createElement('img');
+      img.src = icons[idx % icons.length];
+      img.alt = title;
+      img.style.width = '14px';
+      img.style.height = '14px';
+      img.style.filter = 'invert(100%) brightness(100%)';
+      img.style.borderRadius = '50%';
+
+      el.appendChild(img);
 
       const marker = new mapboxgl.Marker(el, { anchor: 'center' })
         .setLngLat(coords)
@@ -174,8 +196,43 @@ export function Info() {
         </TabButton>
       </div>
       {tab === 'Mapa' && (
-        <div className="relative">
-          <div ref={mapContainerRef} className="h-screen w-full" />
+        <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8">
+          <div ref={mapContainerRef} className="relative h-96 w-full">
+            <div className="right-bottom-window space-y-2 rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
+              <div className="flex items-center space-x-2 text-[10.5px]">
+                <div className="flex h-3 w-3 items-center justify-center rounded-full bg-gold-900">
+                  <img
+                    src="/path/achievements/ico1.svg"
+                    alt="star icon"
+                    className="h-[7px] w-[7px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                </div>
+                <span className="text-blue-200">Polecane dla Ciebie</span>
+              </div>
+              <div className="flex items-center space-x-2 text-[10.5px]">
+                <div className="h-3 w-3 rounded-full bg-green-400">
+                  <div className="m-1 h-1 w-1 rounded-full bg-white"></div>
+                </div>
+                <span className="text-blue-200">Odwiedzone</span>
+              </div>
+            </div>
+            <div className="left-top-window rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
+              <p className="text-[10.5px] text-blue-200 flex items-center gap-1">
+                <img
+                  src="/map/ico2.svg"
+                  alt="plane icon"
+                  className="h-[10.5px] w-[10.5px] filter"
+                  style={{
+                    filter: 'invert(100%) brightness(100%)',
+                  }}
+                />
+                Kliknij na miejsce aby zobaczyć szczegóły
+              </p>
+            </div>
+          </div>
         </div>
       )}
 

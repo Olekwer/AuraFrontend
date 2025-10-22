@@ -81,7 +81,7 @@ export function Info() {
   // const firstName = useAuthStore((s) => s.firstName ?? '');
   // const lastName = useAuthStore((s) => s.lastName ?? '');
   const zodiacSign = useAuthStore((s) => s.zodiacSign ?? '');
-  // const element = useAuthStore((s) => s.element ?? '');
+  const element = useAuthStore((s) => s.element ?? '');
   const isPremium = useAuthStore((s) => s.isPremium ?? false);
   const token = useAuthStore((s) => s.token);
 
@@ -228,8 +228,21 @@ export function Info() {
               to="/profile"
               className="flex min-h-[120px] cursor-pointer flex-col items-start justify-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6"
             >
-              <div className="text-lg font-medium text-blue-100">Twój znak</div>
-              <div className="text-xl text-blue-300">{zodiacSign}</div>
+              <div className="flex items-center justify-start space-x-2 mb-2">
+                <img
+                  src="/path/achievements/ico1.svg"
+                  alt="star icon"
+                  className="h-[21px] w-[21px] filter"
+                  style={{
+                    filter: 'invert(100%) brightness(100%)',
+                  }}
+                />
+                <h2 className="text-lg font-medium text-blue-100">
+                  Twój znak
+                </h2>
+              </div>
+              <div className="text-xl text-blue-300 mb-4">{zodiacSign}</div>
+              <span className="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden bg-gold-900/20 text-gold-200 border-gold-900/30">{element}</span>
             </NavLink>
             <div
               className="gradient-border rounded-xl bg-slate-800/60 from-purple-600 to-pink-600 p-6 text-blue-200"
@@ -240,17 +253,17 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="flex justify-start space-x-2">
+                <div className="flex items-center justify-start space-x-2 mb-2">
                   <img
                     src="/ico1.svg"
-                    alt="Icon"
-                    className="h-7 w-7 filter"
+                    alt="map point icon"
+                    className="h-[21px] w-[21px] filter"
                     style={{
                       filter:
                         'invert(30%) sepia(90%) saturate(1200%) hue-rotate(310deg) brightness(110%) contrast(110%)',
                     }}
                   />
-                  <h2 className="mb-2 text-lg font-medium text-blue-100">
+                  <h2 className="text-lg font-medium text-blue-100">
                     Punkt mocy
                   </h2>
                 </div>
@@ -274,9 +287,17 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <h2 className="mb-2 text-lg font-medium text-blue-100">
-                  Kamień mocy
-                </h2>
+                <div className="flex items-center justify-start space-x-2 mb-2">
+                  <img
+                    src="/path/achievements/ico4.svg"
+                    alt="stone icon"
+                    className="h-[21px] w-[21px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  <h2 className="text-lg font-medium text-blue-100">Kamień mocy</h2>
+                </div>
                 <div className="text-left text-blue-300">
                   {simpleDashboard.powerStone.name} -{' '}
                   {simpleDashboard.powerStone.description}
@@ -296,9 +317,17 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <h2 className="mb-2 text-lg font-medium text-blue-100">
-                  Postęp
-                </h2>
+                <div className="flex items-center justify-start space-x-2 mb-2">
+                  <img
+                    src="/stone/ico3.svg"
+                    alt="heart icon"
+                    className="h-[21px] w-[21px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  <h2 className="text-lg font-medium text-blue-100">Postęp</h2>
+                </div>
                 <div className="text-blue-300">
                   {simpleDashboard.progress.ritualsCompleted} rytuałów
                   wykonanych
@@ -317,7 +346,7 @@ export function Info() {
           <div className="flex min-h-[160px] flex-col justify-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8">
             <div className="mb-6 flex items-start justify-between">
               <div>
-                <h3 className="mb-2 text-2xl font-medium text-blue-100 text-left">
+                <h3 className="mb-2 text-left text-2xl font-medium text-blue-100">
                   Twoja energia dziś
                 </h3>
                 <p className="text-blue-300/80">
@@ -412,7 +441,7 @@ export function Info() {
                 <img
                   src="/path/review/ico1.svg"
                   alt="Icon"
-                  className="h-[21px] w-[21px] filter"
+                  className="h-7 w-7 filter"
                   style={{
                     filter: 'invert(100%) brightness(100%)',
                   }}
@@ -465,7 +494,7 @@ export function Info() {
                 <img
                   src="/path/statistics/activities/ico4.svg"
                   alt="big leaf icon"
-                  className="h-[21px] w-[21px] filter"
+                  className="h-7 w-7 filter"
                   style={{
                     filter: 'invert(100%) brightness(100%)',
                   }}

@@ -156,6 +156,14 @@ export function Info() {
                 <h3 className="mb-2 text-2xl font-medium text-blue-100">
                   {powerStone.title}
                 </h3>
+                <div className="mb-4 flex justify-center space-x-3">
+                  <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-gold-900/30 bg-gold-900/20 px-2 py-0.5 text-xs font-medium text-gold-200 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+                    Żywioł: {'water'}
+                  </span>
+                  <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+                    częsty
+                  </span>
+                </div>
                 <p className="mb-6 px-4 text-center text-blue-300/80">
                   {powerStone.description}
                 </p>
@@ -184,9 +192,19 @@ export function Info() {
 
               <div className="space-y-6 px-4 lg:w-1/2">
                 <div>
-                  <h3 className="mb-3 flex items-center text-lg font-medium text-blue-100">
-                    Właściwości duchowe
-                  </h3>
+                  <div className="mb-3 flex items-center space-x-2">
+                    <img
+                      src="/ico6.svg"
+                      alt="little shine icon"
+                      className="h-[17.5px] w-[17.5px] filter"
+                      style={{
+                        filter: 'invert(100%) brightness(100%)',
+                      }}
+                    />
+                    <h3 className="text-lg font-medium text-blue-100">
+                      Właściwości duchowe
+                    </h3>
+                  </div>
                   <div className="grid grid-cols-1 gap-2 text-left">
                     {powerStone.medicinalProperties.map((prop, i) => (
                       <div
@@ -200,9 +218,19 @@ export function Info() {
                 </div>
 
                 <div>
-                  <h3 className="mb-3 flex items-center text-lg font-medium text-blue-100">
-                    Sposoby użycia
-                  </h3>
+                  <div className="mb-3 flex items-center space-x-2">
+                    <img
+                      src="/path/achievements/ico8.svg"
+                      alt="little moon icon"
+                      className="h-[17.5px] w-[17.5px] filter"
+                      style={{
+                        filter: 'invert(100%) brightness(100%)',
+                      }}
+                    />
+                    <h3 className="text-lg font-medium text-blue-100">
+                      Sposoby użycia
+                    </h3>
+                  </div>
                   <div className="space-y-2">
                     {powerStone.rituals.map((way, i) => (
                       <div
