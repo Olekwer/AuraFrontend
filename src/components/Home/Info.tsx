@@ -441,7 +441,7 @@ export function Info() {
                 <img
                   src="/path/review/ico1.svg"
                   alt="Icon"
-                  className="h-7 w-7 filter"
+                  className="h-[21px] w-[21px] filter"
                   style={{
                     filter: 'invert(100%) brightness(100%)',
                   }}
@@ -494,7 +494,7 @@ export function Info() {
                 <img
                   src="/path/statistics/activities/ico4.svg"
                   alt="big leaf icon"
-                  className="h-7 w-7 filter"
+                  className="h-[21px] w-[21px] filter"
                   style={{
                     filter: 'invert(100%) brightness(100%)',
                   }}

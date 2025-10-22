@@ -3,9 +3,20 @@ import { TabButton } from '../Common/TabButton';
 import { cards, Card } from './Card';
 import { littleCards, LittleCard } from './LittleCard';
 import { bigCards, BigCard } from './BigCard';
+import {
+  infusionInstructions,
+  InfusionInstruction,
+} from './InfusionInstruction';
+import { useInfusionInstructionStore } from '../../store/infusionInstructionStore';
 
 export function Info() {
   const [tab, setTab] = useState<'napary' | 'olejki'>('napary');
+
+  const { isOpen, selectedTitle } = useInfusionInstructionStore();
+
+  const instructionData = isOpen
+    ? infusionInstructions.find((i) => i.title === selectedTitle) || null
+    : null;
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 p-6 pt-16">
@@ -54,7 +65,7 @@ export function Info() {
       </div>
 
       {tab === 'napary' && (
-        <div className="space-y-8">
+        <div className="2xl:max-w-[1116px] space-y-8">
           <div>
             <h2 className="mb-6 flex items-center gap-2 text-2xl font-medium text-blue-100">
               <img
@@ -113,6 +124,19 @@ export function Info() {
               ))}
             </div>
           </div>
+          {instructionData && (
+            <InfusionInstruction
+              key={instructionData.title}
+              title={instructionData.title}
+              description={instructionData.description}
+              time={instructionData.time}
+              temperature={instructionData.temperature}
+              treatment={instructionData.treatment}
+              ingredients={instructionData.ingredients}
+              creationSteps={instructionData.creationSteps}
+              medicinalProperties={instructionData.medicinalProperties}
+            />
+          )}
         </div>
       )}
 
