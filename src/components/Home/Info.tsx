@@ -228,7 +228,7 @@ export function Info() {
               to="/profile"
               className="flex min-h-[120px] cursor-pointer flex-col items-start justify-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6"
             >
-              <div className="flex items-center justify-start space-x-2 mb-2">
+              <div className="mb-2 flex items-center justify-start space-x-2">
                 <img
                   src="/path/achievements/ico1.svg"
                   alt="star icon"
@@ -237,12 +237,12 @@ export function Info() {
                     filter: 'invert(100%) brightness(100%)',
                   }}
                 />
-                <h2 className="text-lg font-medium text-blue-100">
-                  Twój znak
-                </h2>
+                <h2 className="text-lg font-medium text-blue-100">Twój znak</h2>
               </div>
-              <div className="text-xl text-blue-300 mb-4">{zodiacSign}</div>
-              <span className="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden bg-gold-900/20 text-gold-200 border-gold-900/30">{element}</span>
+              <div className="mb-4 text-xl text-blue-300">{zodiacSign}</div>
+              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-gold-900/30 bg-gold-900/20 px-2 py-0.5 text-xs font-medium text-gold-200 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+                {element}
+              </span>
             </NavLink>
             <div
               className="gradient-border rounded-xl bg-slate-800/60 from-purple-600 to-pink-600 p-6 text-blue-200"
@@ -253,7 +253,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="flex items-center justify-start space-x-2 mb-2">
+                <div className="mb-2 flex items-center justify-start space-x-2">
                   <img
                     src="/ico1.svg"
                     alt="map point icon"
@@ -287,7 +287,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="flex items-center justify-start space-x-2 mb-2">
+                <div className="mb-2 flex items-center justify-start space-x-2">
                   <img
                     src="/path/achievements/ico4.svg"
                     alt="stone icon"
@@ -296,7 +296,9 @@ export function Info() {
                       filter: 'invert(100%) brightness(100%)',
                     }}
                   />
-                  <h2 className="text-lg font-medium text-blue-100">Kamień mocy</h2>
+                  <h2 className="text-lg font-medium text-blue-100">
+                    Kamień mocy
+                  </h2>
                 </div>
                 <div className="text-left text-blue-300">
                   {simpleDashboard.powerStone.name} -{' '}
@@ -317,7 +319,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="flex items-center justify-start space-x-2 mb-2">
+                <div className="mb-2 flex items-center justify-start space-x-2">
                   <img
                     src="/stone/ico3.svg"
                     alt="heart icon"
@@ -462,28 +464,32 @@ export function Info() {
               </p>
             </div>
             <div className="flex space-x-3 text-white">
-              <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-                <img
-                  src="/ico10.svg"
-                  alt="headphones icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter: 'invert(100%) brightness(100%)',
-                  }}
-                />
-                Rozpocznij rytuał
-              </button>
-              <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-                <img
-                  src="/ico1.svg"
-                  alt="location icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter: 'invert(100%) brightness(100%)',
-                  }}
-                />
-                Lokalizacja
-              </button>
+              <NavLink to="/rituals">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                  <img
+                    src="/ico10.svg"
+                    alt="headphones icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  Rozpocznij rytuał
+                </button>
+              </NavLink>
+              <NavLink to="/map">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                  <img
+                    src="/ico1.svg"
+                    alt="location icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  Lokalizacja
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -515,28 +521,32 @@ export function Info() {
               </p>
             </div>
             <div className="flex space-x-3 text-white">
-              <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-                <img
-                  src="/path/statistics/activities/ico4.svg"
-                  alt="little leaf icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter: 'invert(100%) brightness(100%)',
-                  }}
-                />
-                Zobacz przepis
-              </button>
-              <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-                <img
-                  src="/path/statistics/activities/ico3.svg"
-                  alt="little stone icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter: 'invert(100%) brightness(100%)',
-                  }}
-                />
-                Kamienie
-              </button>
+              <NavLink to="/infusions">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                  <img
+                    src="/path/statistics/activities/ico4.svg"
+                    alt="little leaf icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  Zobacz przepis
+                </button>
+              </NavLink>
+              <NavLink to="/stone">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+                  <img
+                    src="/path/statistics/activities/ico3.svg"
+                    alt="little stone icon"
+                    className="h-[14px] w-[14px] filter"
+                    style={{
+                      filter: 'invert(100%) brightness(100%)',
+                    }}
+                  />
+                  Kamienie
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

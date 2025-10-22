@@ -202,6 +202,7 @@ export function Info() {
               </p>
               <button
                 type="button"
+                onClick={() => setTab('dziennik')}
                 className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
               >
                 <img
