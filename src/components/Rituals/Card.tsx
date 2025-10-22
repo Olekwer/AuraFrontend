@@ -1,3 +1,6 @@
+import React from 'react';
+import { useRitualInstructionStore } from '../../store/ritualInstructionStore';
+
 export const cards = [
   {
     icon: (
@@ -41,7 +44,7 @@ export const cards = [
   },
   {
     icon: (
-      <div className="bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 flex-shrink-0 rounded-full p-3">
+      <div className="flex-shrink-0 rounded-full bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 p-3">
         <img
           src="/path/achievements/ico1.svg"
           alt="star icon"
@@ -77,6 +80,10 @@ export function Card({
   dayPart: string;
   isFavourite?: boolean;
 }) {
+  const { setOpenInstruction } = useRitualInstructionStore();
+
+  const handleOpen = () => setOpenInstruction(title);
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-6 transition-all duration-300 hover:bg-slate-700/40">
       <div className="mb-4 flex items-start space-x-4">
@@ -90,9 +97,11 @@ export function Card({
               </span>
             )}
           </div>
-          <p className="mb-3 text-sm text-blue-300/80 text-left">{description}</p>
+          <p className="mb-3 text-left text-sm text-blue-300/80">
+            {description}
+          </p>
           <div className="mb-4 flex items-center space-x-4">
-            <span className="flex gap-1 items-center text-sm text-blue-300">
+            <span className="flex items-center gap-1 text-sm text-blue-300">
               <img
                 src="/infusions/little-ico1.svg"
                 alt="little time icon"
@@ -116,7 +125,7 @@ export function Card({
                 {statusType}
               </span>
             )}
-            <span className="flex gap-1 items-center text-sm text-blue-400/60">
+            <span className="flex items-center gap-1 text-sm text-blue-400/60">
               {dayPart === 'wschód słońca' ? (
                 <img
                   src="/infusions/little-ico4.svg"
@@ -146,7 +155,10 @@ export function Card({
         </div>
       </div>
       <div className="flex space-x-3">
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-white">
+        <button
+          onClick={handleOpen}
+          className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 text-sm font-medium text-white outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+        >
           Zobacz instrukcję
         </button>
         <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">

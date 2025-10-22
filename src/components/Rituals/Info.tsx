@@ -4,8 +4,16 @@ import {
 } from './AdditionalRitualCard';
 import { cards, Card } from './Card';
 import { soundCards, SoundCard } from './SoundCard';
+import { instructions, RitualInstruction } from './RitualInstruction';
+import { useRitualInstructionStore } from '../../store/ritualInstructionStore';
 
 export function Info() {
+  const { isOpen, selectedTitle } = useRitualInstructionStore();
+
+  const instructionData = isOpen
+    ? instructions.find((i) => i.title === selectedTitle) || null
+    : null;
+
   return (
     <div className="space-y-8 p-6 pt-16">
       <div className="text-center">
@@ -80,8 +88,17 @@ export function Info() {
           ))}
         </div>
       </div>
+      {instructionData && (
+        <RitualInstruction
+          key={instructionData.title}
+          title={instructionData.title}
+          description={instructionData.description}
+          requiredMaterials={instructionData.requiredMaterials}
+          ritualSteps={instructionData.ritualSteps}
+        />
+      )}
       <div>
-        <h2 className="mb-6 text-2xl font-medium text-blue-100 text-left">
+        <h2 className="mb-6 text-left text-2xl font-medium text-blue-100">
           Dodatkowe rytuały
         </h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
