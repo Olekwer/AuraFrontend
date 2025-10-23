@@ -109,7 +109,7 @@ export function Info() {
                   Twoja duchowa podróż
                 </h2>
 
-                <div className="relative max-w-md mx-auto h-8 w-full">
+                <div className="relative mx-auto h-8 w-full max-w-md">
                   <div className="mb-1 flex justify-between text-sm text-blue-200">
                     <span>Ogólny postęp</span>
                     <span className="font-medium text-blue-100">0%</span>
@@ -126,7 +126,7 @@ export function Info() {
                   0 dni aktywnej praktyki
                 </p>
 
-                <div className="mt-6 grid grid-cols-2 gap-6 text-center text-blue-100 sm:grid-cols-4">
+                <div className="mt-12 grid grid-cols-2 gap-6 text-center text-blue-100 sm:grid-cols-4">
                   <div>
                     <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
                       <img
@@ -204,10 +204,10 @@ export function Info() {
                     }}
                   />
                 </div>
-                <h3 className="mb-4 text-center text-lg font-medium text-blue-100 sm:text-xl">
+                <h3 className="mb-7 text-center text-lg font-medium text-blue-100 sm:text-xl">
                   Rozpocznij swój dziennik
                 </h3>
-                <p className="mb-6 text-center text-blue-300/80">
+                <p className="mb-9 text-center text-blue-300/80">
                   Zapisuj swoje doświadczenia i obserwuj swoją duchową
                   transformację
                 </p>
@@ -230,59 +230,66 @@ export function Info() {
         )}
 
         {tab === 'dziennik' && (
-          <div className="flex w-full max-w-7xl flex-col gap-6">
-            <div>
-              <div className="mb-6 flex items-center justify-between">
+          <div className="flex w-full flex-col gap-6 px-4 sm:px-6 md:px-8">
+            <div className="mx-auto w-full max-w-5xl">
+              <div className="mb-8 flex items-start justify-between gap-4 md:mb-6">
                 <h2 className="text-2xl font-medium text-blue-100">
                   Dziennik duchowej podróży
                 </h2>
-                <div className="flex gap-4">
+
+                <div className="flex flex-wrap items-center gap-3">
                   <button
                     type="button"
-                    className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
                     onClick={handleToggleNewEntry}
+                    className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-w-[120px] items-center justify-center gap-2 whitespace-nowrap rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white outline-none transition-all hover:bg-green-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
                   >
                     <img
                       src="/path/review/activities-button-icon.svg"
                       alt="nowy wpis icon"
-                      className="h-[14px] w-[14px]"
+                      className="block h-[14px] w-[14px]"
                       style={{ filter: 'invert(100%) brightness(100%)' }}
                     />
                     Nowy wpis
                   </button>
+
                   <button
                     type="button"
-                    className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                    className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-w-[120px] items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
                   >
                     <img
                       src="/stone/appointment/download-icon.svg"
-                      alt="nowy wpis icon"
-                      className="h-[14px] w-[14px]"
+                      alt="export icon"
+                      className="block h-[14px] w-[14px]"
                       style={{ filter: 'invert(100%) brightness(100%)' }}
                     />
                     Export PDF
                   </button>
                 </div>
               </div>
-              {showNewEntry && <NewEntry />}
-            </div>
 
-            <div className="mb-8 flex flex-col items-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-8 text-center text-blue-100">
-              <img
-                src="/path/review/ico4.svg"
-                alt="blue icon"
-                className="mb-6 h-16 w-16 opacity-40"
-                style={{
-                  filter:
-                    'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
-                }}
-              />
-              <h3 className="mb-2 text-xl font-medium text-blue-100">
-                Twój dziennik jest pusty
-              </h3>
-              <p className="mb-6 text-blue-300/80">
-                Rozpocznij dokumentowanie swojej duchowej podróży
-              </p>
+              {showNewEntry && (
+                <div className="mb-6">
+                  <NewEntry onCancel={handleToggleNewEntry} />
+                </div>
+              )}
+
+              <div className="mb-8 flex flex-col items-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6 text-center text-blue-100">
+                <img
+                  src="/path/review/ico4.svg"
+                  alt="blue icon"
+                  className="mb-6 h-16 w-16 max-w-full opacity-40"
+                  style={{
+                    filter:
+                      'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
+                  }}
+                />
+                <h3 className="mb-8 text-xl font-medium text-blue-100">
+                  Twój dziennik jest pusty
+                </h3>
+                <p className="mb-6 text-blue-300/80">
+                  Rozpocznij dokumentowanie swojej duchowej podróży
+                </p>
+              </div>
             </div>
           </div>
         )}
@@ -291,7 +298,7 @@ export function Info() {
 
         <div className="w-full px-4 sm:px-6 md:px-8">
           <div className="mx-auto w-full max-w-5xl rounded-xl border border-purple-700/30 bg-gradient-to-r from-purple-900/30 to-blue-900/30 p-6">
-            <p className="px-4 text-base italic text-purple-200 sm:px-12 md:px-44">
+            <p className="px-4 text-base italic text-purple-200 sm:px-12 md:px-0 lg:px-[108px] xl:px-[164px]">
               "Każdy krok na duchowej ścieżce jest cennym doświadczeniem. Nie
               porównuj swojej podróży z innymi - Twoja droga jest unikalna i
               doskonała tak, jak jest."
