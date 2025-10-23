@@ -193,141 +193,183 @@ export function InfusionInstruction({
   const { closeInstruction } = useInfusionInstructionStore();
 
   return (
-    <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8 text-left">
-      <div className="mb-6 flex items-start justify-between">
-        <div>
-          <h3 className="mb-2 text-2xl font-medium text-blue-100">{title}</h3>
-          <p className="mb-4 text-blue-300/80">{description}</p>
-          <div className="mb-4 flex items-center space-x-4">
-            <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-              <div className="flex items-center gap-2">
-              <img
-                src="/infusions/ico4.svg"
-                alt="little timer icon"
-                className="h-[10.5px] w-[10.5px] filter"
-                style={{
-                  filter: 'invert(100%) brightness(100%)',
-                }}
-              />
-              {time} min
-              </div>
-            </span>
-            <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-blue-500/30 bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-              <div className="flex items-center gap-2">
-              <img
-                src="/infusions/ico3.svg"
-                alt="little temperature icon"
-                className="h-[10.5px] w-[10.5px] filter"
-                style={{
-                  filter: 'invert(100%) brightness(100%)',
-                }}
-              />
-              {temperature}°C
-              </div>
-            </span>
-            <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-purple-500/30 bg-purple-500/20 px-2 py-0.5 text-xs font-medium text-purple-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-              <div className="flex items-center gap-2">
-              <img
-                src="/infusions/little-ico1.svg"
-                alt="little time icon"
-                className="h-[10.5px] w-[10.5px] filter"
-                style={{
-                  filter: 'invert(100%) brightness(100%)',
-                }}
-              />
-              Kuracja: {treatment}
-              </div>
-            </span>
-          </div>
-        </div>
-        <button
-          onClick={closeInstruction}
-          className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
-        >
-          Zamknij
-        </button>
-      </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div>
-          <h4 className="mb-4 text-lg font-medium text-blue-100">Składniki:</h4>
-          <ul className="space-y-2">
-            {ingredients.map((ingredient, idx) => (
-              <li key={idx} className="flex items-center text-blue-300/80">
-                <div className="flex items-center gap-2">
+    <div className="box-border w-full">
+      <div className="w-full max-w-full space-y-12 overflow-hidden rounded-xl border border-blue-800/30 bg-slate-800/40 p-4 text-left sm:p-6 md:p-8">
+        <div className="mb-4 flex w-full items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <h3
+              className="mb-2 text-lg font-medium text-blue-100 sm:text-2xl"
+              title={title}
+            >
+              {title}
+            </h3>
+
+            <p
+              className="mb-3 max-w-full overflow-hidden break-words text-sm text-blue-300/80"
+              style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+              title={description}
+            >
+              {description}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300">
                 <img
-                  src="/path/journal/ico1.svg"
-                  alt="accept icon"
-                  className="h-[14px] w-[14px]"
+                  src="/infusions/ico4.svg"
+                  alt="little timer icon"
+                  aria-hidden="true"
+                  className="h-[12px] w-[12px] filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
-                {ingredient}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-4 text-lg font-medium text-blue-100">
-            Sposób przygotowania:
-          </h4>
-          <ol className="space-y-3">
-            {creationSteps.map((step, idx) => (
-              <li key={idx} className="flex text-blue-300/80">
-                <span className="mr-3 mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-sm text-white">
-                  {idx + 1}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="rounded-lg border border-green-700/30 bg-green-900/30 p-4">
-          <h5 className="mb-2 font-medium text-green-200">
-            Właściwości lecznicze:
-          </h5>
-          <div className="flex flex-wrap gap-2">
-            {medicinalProperties.map((property, idx) => (
-              <span
-                key={idx}
-                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3"
-              >
-                {property}
+                <span className="min-w-0">{time} min</span>
               </span>
-            ))}
+
+              <span className="inline-flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-blue-500/30 bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300">
+                <img
+                  src="/infusions/ico3.svg"
+                  alt="little temperature icon"
+                  aria-hidden="true"
+                  className="h-[12px] w-[12px] filter"
+                  style={{ filter: 'invert(100%) brightness(100%)' }}
+                />
+                <span className="min-w-0">{temperature}°C</span>
+              </span>
+
+              <span className="inline-flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-purple-500/30 bg-purple-500/20 px-2 py-0.5 text-xs font-medium text-purple-300">
+                <img
+                  src="/infusions/little-ico1.svg"
+                  alt="little time icon"
+                  aria-hidden="true"
+                  className="h-[12px] w-[12px] filter"
+                  style={{ filter: 'invert(100%) brightness(100%)' }}
+                />
+                <span className="min-w-0">Kuracja: {treatment}</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-shrink-0 items-start">
+            <button
+              onClick={closeInstruction}
+              className="inline-flex h-9 min-w-[88px] items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 transition-all hover:bg-slate-700/60"
+            >
+              Zamknij
+            </button>
           </div>
         </div>
-        <div className="rounded-lg border border-blue-700/30 bg-blue-900/30 p-4">
-          <h5 className="mb-2 font-medium text-blue-200">Wskazówki:</h5>
-          <p className="text-sm italic text-blue-100">
-            "Przygotowuj napar z szacunkiem i wdzięcznością. Każde zioło niesie
-            w sobie mądrość natury. Pij powoli, delektując się smakiem i
-            aromatem."
-          </p>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="min-w-0">
+            <h4 className="mb-3 text-base font-medium text-blue-100">
+              Składniki:
+            </h4>
+
+            <ul className="space-y-2">
+              {ingredients.map((ingredient, idx) => (
+                <li key={idx} className="min-w-0 text-blue-300/80">
+                  <div className="flex items-center">
+                    <div className="mr-3 flex-shrink-0">
+                      <img
+                        src="/path/journal/ico1.svg"
+                        alt="accept icon"
+                        aria-hidden="true"
+                        className="h-[14px] w-[14px] filter"
+                        style={{ filter: 'invert(100%) brightness(100%)' }}
+                      />
+                    </div>
+                    <div
+                      className="min-w-0 break-words"
+                      style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+                    >
+                      {ingredient}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="min-w-0">
+            <h4 className="mb-3 text-base font-medium text-blue-100">
+              Sposób przygotowania:
+            </h4>
+
+            <ol className="space-y-3">
+              {creationSteps.map((step, idx) => (
+                <li
+                  key={idx}
+                  className="flex min-w-0 items-start text-blue-300/80"
+                >
+                  <span className="mr-3 mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-600 text-sm text-white">
+                    {idx + 1}
+                  </span>
+                  <div
+                    className="min-w-0 break-words"
+                    style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+                  >
+                    {step}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
-      </div>
-      <div className="mt-6 flex space-x-4">
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-pink-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-white">
-          <img
-            src="/stone/ico3.svg"
-            alt="button heart icon"
-            className="h-[14px] w-[14px] filter"
-            style={{
-              filter: 'invert(100%) brightness(100%)',
-            }}
-          />
-          Dodaj do ulubionych
-        </button>
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
-          <img
-            src="/path/journal/ico1.svg"
-            alt="accept icon"
-            className="h-[14px] w-[14px]"
-            style={{ filter: 'invert(100%) brightness(100%)' }}
-          />
-          Oznacz jako użyte
-        </button>
+
+        <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="min-w-0 rounded-lg border border-green-700/30 bg-green-900/30 p-3">
+            <h5 className="mb-2 text-sm font-medium text-green-200">
+              Właściwości lecznicze:
+            </h5>
+            <div className="flex flex-wrap gap-2">
+              {medicinalProperties.map((property, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300"
+                >
+                  {property}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="min-w-0 rounded-lg border border-blue-700/30 bg-blue-900/30 p-3">
+            <h5 className="mb-2 text-sm font-medium text-blue-200">
+              Wskazówki:
+            </h5>
+            <p
+              className="break-words text-sm italic text-blue-100"
+              style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
+            >
+              "Przygotowuj napar z szacunkiem i wdzięcznością. Każde zioło
+              niesie w sobie mądrość natury. Pij powoli, delektując się smakiem
+              i aromatem."
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-3">
+          <button className="inline-flex w-full min-w-0 max-w-[320px] items-center justify-center gap-2 whitespace-nowrap rounded-md bg-pink-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-pink-700">
+            <img
+              src="/stone/ico3.svg"
+              alt="button heart icon"
+              aria-hidden="true"
+              className="h-[14px] w-[14px] filter"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
+            Dodaj do ulubionych
+          </button>
+
+          <button className="inline-flex w-full min-w-0 max-w-[320px] items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 transition-colors">
+            <img
+              src="/path/journal/ico1.svg"
+              alt="button accept icon"
+              aria-hidden="true"
+              className="h-[14px] w-[14px]"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
+            Oznacz jako użyte
+          </button>
+        </div>
       </div>
     </div>
   );
