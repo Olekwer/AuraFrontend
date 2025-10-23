@@ -29,11 +29,11 @@ function AchievementCard({
         />
       </div>
       <div className="flex min-w-0 flex-grow flex-col gap-3">
-        <h3 className="break-words break-all text-left text-lg font-medium text-blue-200">
+        <h3 className="break-words text-left text-base font-medium text-blue-200 [word-break:break-word]">
           {title}
         </h3>
 
-        <p className="break-words text-left text-sm text-blue-300/80 [word-break:break-word]">
+        <p className="break-words text-left text-xs text-blue-300/80 [word-break:break-word]">
           {description}
         </p>
 
@@ -46,7 +46,7 @@ function AchievementCard({
           </div>
 
           <div className="relative w-full">
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-blue-900">
+            <div className="h-[7px] w-full overflow-hidden rounded-full bg-blue-900">
               <div
                 className="h-full bg-blue-400 transition-all"
                 style={{ width: `${progressPercent}%` }}

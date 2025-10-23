@@ -47,7 +47,7 @@ function StatPopup({
       </div>
 
       {isNeedProgressBar && (
-        <div className="relative mt-auto h-4 w-full overflow-hidden rounded-full bg-blue-900">
+        <div className="relative mt-auto h-[10.5px] w-full overflow-hidden rounded-full bg-blue-900">
           <div
             style={{ width: `${progressPercent}%` }}
             className="h-full bg-blue-400 transition-all"
@@ -88,7 +88,7 @@ function ActivityRow({
 
 export function StatisticsTab() {
   return (
-    <div className="w-full max-w-7xl px-4 sm:px-6">
+    <div className="w-full max-w-[1200px] px-4 sm:px-6">
       <h2 className="mb-6 text-left text-2xl font-medium text-blue-100">
         Statystyki i analytics
       </h2>
@@ -133,7 +133,7 @@ export function StatisticsTab() {
         />
       </div>
 
-      <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="mx-auto mb-8 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6 text-blue-100">
           <h3 className="mb-6 text-left text-xl font-medium text-blue-100">
             Aktywność w czasie
