@@ -120,7 +120,7 @@ export function RitualInstruction({
   const { closeInstruction } = useRitualInstructionStore();
 
   return (
-    <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8 text-left">
+    <div className="flex flex-col max-w-[1129px] gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8 text-left">
       <div className="mb-6 flex items-start justify-between">
         <div>
           <h3 className="mb-2 text-2xl font-medium text-blue-100">{title}</h3>
@@ -153,7 +153,7 @@ export function RitualInstruction({
           </h4>
           <ol className="space-y-3">
             {ritualSteps.map((step, idx) => (
-              <li className="flex text-blue-300/80">
+              <li key={idx} className="flex text-blue-300/80">
                 <span className="mr-3 mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm text-white">
                   {idx + 1}
                 </span>
