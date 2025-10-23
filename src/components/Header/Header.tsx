@@ -11,17 +11,17 @@ export function Header() {
   if (!isAuthenticated) return null;
 
   const baseClass =
-    'px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap flex items-center space-x-2 text-blue-300 hover:bg-blue-800/30 hover:text-blue-200';
+    'inline-flex items-center justify-center px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap gap-2 text-blue-300 hover:bg-blue-800/30 hover:text-blue-200 z-20';
   const activeClass =
-    'px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap flex items-center space-x-2 text-blue-100 bg-blue-600';
+    'inline-flex items-center justify-center px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap gap-2 text-blue-100 bg-blue-600 z-20';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-blue-800/30 bg-slate-900/80 px-3 py-2.5 backdrop-blur-lg [padding-top:env(safe-area-inset-top)] sm:px-4 sm:py-3">
+    <header className="sticky top-0 z-50 box-border w-full overflow-hidden border-b border-blue-800/30 bg-slate-900/80 px-3 py-2.5 backdrop-blur-lg [padding-top:env(safe-area-inset-top)] sm:px-4 sm:py-3">
       <div className="mx-auto flex w-full max-w-screen-2xl items-center gap-2 sm:gap-4">
-        <div className="hidden flex-1 sm:block" />
+        <div className="w-[12px] min-w-0 flex-none sm:w-[32px] md:w-[220px] lg:w-[320px] xl:w-[200px]" />
 
-        <nav className="min-w-0 flex-1 sm:flex sm:min-w-[unset] sm:justify-center">
-          <div className="no-scrollbar -mx-1 flex max-w-full snap-x snap-mandatory gap-1 overflow-x-auto scroll-smooth px-1 sm:mx-0 sm:inline-flex sm:gap-2 sm:overflow-visible sm:px-0">
+        <nav className="min-w-0 flex-1 sm:flex sm:justify-center">
+          <div className="no-scrollbar flex max-w-full gap-1 overflow-x-auto scroll-smooth px-1 sm:gap-2 lg:overflow-x-auto lg:px-1 xl:inline-flex xl:gap-2 xl:overflow-visible xl:px-0">
             <NavLink
               to="/"
               end
@@ -29,11 +29,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
                   src="/stone/appointment/ico4.svg"
                   alt="header star shine icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Strefa Mocy</span>
@@ -46,11 +46,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
                   src="/path/achievements/ico3.svg"
-                  alt="header map icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  alt="header map point icon"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Mapa Miejsc Mocy</span>
@@ -63,11 +63,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
                   src="/path/review/ico1.svg"
                   alt="header music icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Rytuały i Dźwięki</span>
@@ -80,11 +80,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
                   src="/path/achievements/ico5.svg"
                   alt="header leaf icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Napary i Maści</span>
@@ -97,11 +97,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
-                  src="/path/achievements/ico5.svg"
+                  src="/path/achievements/ico4.svg"
                   alt="header stone icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Kamienie</span>
@@ -114,11 +114,11 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex items-center gap-3">
+              <div className="flex w-full items-center gap-3">
                 <img
                   src="/path/achievements/ico6.svg"
                   alt="header book icon"
-                  className="h-[14px] w-[14px] shrink-0 filter"
+                  className="h-[14px] w-[14px] flex-shrink-0 filter"
                   style={{ filter: 'invert(100%) brightness(100%)' }}
                 />
                 <span className="truncate">Moja Ścieżka</span>
