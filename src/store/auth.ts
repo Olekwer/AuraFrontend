@@ -44,7 +44,15 @@ export const useAuthStore = create<UserState>((set, get) => ({
   isPremium: false,
   isAuthenticated: false,
 
-  login: ({ token, email, firstName, lastName, zodiacSign, element, isPremium }) => {
+  login: ({
+    token,
+    email,
+    firstName,
+    lastName,
+    zodiacSign,
+    element,
+    isPremium,
+  }) => {
     setCookie(TOKEN_COOKIE, token);
     setCookie(EMAIL_COOKIE, email);
     setCookie(FIRSTNAME_COOKIE, firstName);
