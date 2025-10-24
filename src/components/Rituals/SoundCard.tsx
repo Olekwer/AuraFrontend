@@ -1,3 +1,5 @@
+import { useAudioStore } from '../../store/audioStore';
+
 export const soundCards = [
   {
     title: 'Fale oceanu 432Hz',
@@ -48,11 +50,31 @@ export function SoundCard({
   tag: string;
   time: string;
 }) {
+  const { currentTitle, playing, showTrack, togglePlayPause } = useAudioStore();
+
+  const isCurrent = currentTitle === title;
+  const isPlaying = isCurrent && playing;
+
+  const handleClick = () => {
+    if (!isCurrent) {
+      showTrack(title, time);
+      return;
+    }
+    togglePlayPause(title);
+  };
+
+  const buttonBg = isPlaying
+    ? 'bg-green-600 hover:bg-green-700'
+    : 'bg-blue-600 hover:bg-blue-700';
+  const iconSrc = isPlaying
+    ? '/rituals/audioPlayer/ico1.svg'
+    : '/rituals/soundCard/ico1.svg';
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-blue-800/20 bg-slate-800/20 p-4 transition-all duration-300 hover:bg-slate-700/30">
       <div className="mb-3 flex items-center justify-between">
         <h4 className="font-medium text-blue-100">{title}</h4>
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-auto shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md p-1 text-sm font-medium outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+        <button className="inline-flex h-auto shrink-0 items-center justify-center gap-1.5 rounded-md p-1 text-sm font-medium outline-none transition-all">
           <img
             src="/stone/ico3.svg"
             alt="heart icon"
@@ -65,26 +87,31 @@ export function SoundCard({
           />
         </button>
       </div>
+
       <p className="mb-3 text-left text-sm text-blue-300/60">{description}</p>
+
       <div className="mb-3 flex items-center justify-between">
-        <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-blue-500/30 bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
+        <span className="inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-md border border-blue-500/30 bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300">
           {tag}
         </span>
         <span className="text-sm text-blue-400/60">{time}</span>
       </div>
+
       <div className="flex space-x-2">
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 text-sm font-medium text-white outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+        <button
+          onClick={handleClick}
+          className={`inline-flex h-8 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3 text-sm font-medium text-white outline-none transition-all ${buttonBg}`}
+        >
           <img
-            src="/rituals/soundCard/ico1.svg"
-            alt="play icon"
+            src={iconSrc}
+            alt={isPlaying ? 'pause icon' : 'play icon'}
             className="h-[14px] w-[14px] filter"
-            style={{
-              filter: 'invert(100%) brightness(100%)',
-            }}
+            style={{ filter: 'invert(100%) brightness(100%)' }}
           />
           Odtwórz
         </button>
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+
+        <button className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 outline-none transition-all">
           <img
             src="/stone/appointment/download-icon.svg"
             alt="download icon"

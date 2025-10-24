@@ -6,6 +6,7 @@ import { cards, Card } from './Card';
 import { soundCards, SoundCard } from './SoundCard';
 import { instructions, RitualInstruction } from './RitualInstruction';
 import { useRitualInstructionStore } from '../../store/ritualInstructionStore';
+import { AudioPlayer } from './AudioPlayer';
 
 export function Info() {
   const { isOpen, selectedTitle } = useRitualInstructionStore();
@@ -24,6 +25,7 @@ export function Info() {
           Odkryj moc świętych ceremonii i częstotliwości uzdrawiających
         </p>
       </div>
+      <AudioPlayer />
       <div>
         <h2 className="mb-6 flex items-center gap-2 text-2xl font-medium text-blue-100">
           <img

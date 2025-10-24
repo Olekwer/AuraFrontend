@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRitualInstructionStore } from '../../store/ritualInstructionStore';
+import { useAudioStore } from '../../store/audioStore';
 
 export const cards = [
   {
@@ -81,8 +82,19 @@ export function Card({
   isFavourite?: boolean;
 }) {
   const { setOpenInstruction } = useRitualInstructionStore();
+  const { showTrack, togglePlayPause, currentTitle } = useAudioStore();
 
   const handleOpen = () => setOpenInstruction(title);
+
+  const handleAudio = () => {
+    const displayTime = time.includes(':') ? time : `${time}:00`;
+
+    if (currentTitle === title) {
+      togglePlayPause(title);
+    } else {
+      showTrack(title, displayTime);
+    }
+  };
 
   return (
     <div className="flex w-full max-w-full flex-col gap-4 rounded-xl border border-blue-800/30 bg-slate-800/40 p-4 transition-all duration-300 hover:bg-slate-700/40 sm:p-5">
@@ -184,7 +196,10 @@ export function Card({
           Zobacz instrukcję
         </button>
 
-        <button className="inline-flex h-8 min-w-[110px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 transition-colors">
+        <button
+          onClick={handleAudio}
+          className="inline-flex h-8 min-w-[110px] items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium text-blue-200 transition-colors"
+        >
           <img
             src="/ico10.svg"
             alt="headphones icon"
