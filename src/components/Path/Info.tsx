@@ -114,7 +114,7 @@ export function Info() {
                     <span>Ogólny postęp</span>
                     <span className="font-medium text-blue-100">0%</span>
                   </div>
-                  <div className="h-[10.5px] w-full overflow-hidden rounded-full bg-blue-900">
+                  <div className="progress-bar-bg-color h-[10.5px] w-full overflow-hidden rounded-full">
                     <div
                       style={{ width: '0%' }}
                       className="h-full bg-blue-400 transition-all"

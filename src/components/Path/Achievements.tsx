@@ -46,7 +46,7 @@ function AchievementCard({
           </div>
 
           <div className="relative w-full">
-            <div className="h-[7px] w-full overflow-hidden rounded-full bg-blue-900">
+            <div className="progress-bar-bg-color h-[7px] w-full overflow-hidden rounded-full">
               <div
                 className="h-full bg-blue-400 transition-all"
                 style={{ width: `${progressPercent}%` }}

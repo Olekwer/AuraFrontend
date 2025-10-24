@@ -1,5 +1,6 @@
 import { Header } from '../../components/Header/Header';
 import { Info } from '../../components/Path/Info';
+import './Path.css';
 
 export function Path() {
   return (

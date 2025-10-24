@@ -32,6 +32,10 @@ html, body, #root {
   z-index: -1;
 }
 
+.progress-bar-bg-color {
+  @apply bg-[rgba(3,2,18,0.2)];
+}
+
 body {
   overflow-x: hidden;
 }

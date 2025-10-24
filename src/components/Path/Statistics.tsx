@@ -25,7 +25,7 @@ function StatPopup({
 }) {
   return (
     <div className="flex max-w-sm flex-col gap-1 rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6 text-blue-100">
-      <div className="flex items-center justify-start gap-4 mb-4">
+      <div className="mb-4 flex items-center justify-start gap-4">
         <div className={iconClassName}>
           <img
             src={icon}
@@ -47,7 +47,7 @@ function StatPopup({
       </div>
 
       {isNeedProgressBar && (
-        <div className="relative mt-auto h-[10.5px] w-full overflow-hidden rounded-full bg-blue-900">
+        <div className="progress-bar-bg-color relative mt-auto h-[10.5px] w-full overflow-hidden rounded-full">
           <div
             style={{ width: `${progressPercent}%` }}
             className="h-full bg-blue-400 transition-all"
