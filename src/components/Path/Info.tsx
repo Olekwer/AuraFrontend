@@ -260,7 +260,10 @@ export function Info() {
                       src="/stone/appointment/download-icon.svg"
                       alt="export icon"
                       className="block h-[14px] w-[14px]"
-                      style={{ filter: 'invert(100%) brightness(100%)' }}
+                      style={{
+                        filter:
+                          'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
+                      }}
                     />
                     Export PDF
                   </button>

@@ -3,7 +3,8 @@ import { useState } from 'react';
 const goalsCards = [
   {
     icon: '/stone/appointment/ico1.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-gray-600 to-black flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-gray-600 to-black flex items-center justify-center mb-4',
     title: 'Ochrona',
     description: 'Kamienie chroniące przed negatywną energią',
     count: '3 kamieni',
@@ -11,7 +12,8 @@ const goalsCards = [
   },
   {
     icon: '/stone/appointment/ico2.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center mb-4',
     title: 'Miłość',
     description: 'Kamienie przyciągające i wzmacniające miłość',
     count: '3 kamieni',
@@ -19,7 +21,8 @@ const goalsCards = [
   },
   {
     icon: '/stone/appointment/ico3.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-gold-900 to-yellow-500 flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-gold-900 to-yellow-500 flex items-center justify-center mb-4',
     title: 'Sukces',
     description: 'Kamienie wspierające osiągnięcie celów',
     count: '3 kamieni',
@@ -27,7 +30,8 @@ const goalsCards = [
   },
   {
     icon: '/stone/appointment/ico4.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-400 to-blue-400 flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-400 to-blue-400 flex items-center justify-center mb-4',
     title: 'Uzdrowienie',
     description: 'Kamienie wspierające proces uzdrowienia',
     count: '3 kamieni',
@@ -35,7 +39,8 @@ const goalsCards = [
   },
   {
     icon: '/stone/appointment/ico5.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-indigo-400 flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-indigo-400 flex items-center justify-center mb-4',
     title: 'Intuicja',
     description: 'Kamienie otwierające trzecie oko',
     count: '3 kamieni',
@@ -43,7 +48,8 @@ const goalsCards = [
   },
   {
     icon: '/stone/appointment/ico6.svg',
-    iconClassName: 'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-4',
+    iconClassName:
+      'w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center mb-4',
     title: 'Energia',
     description: 'Kamienie zwiększające życiową energię',
     count: '3 kamieni',
@@ -82,7 +88,12 @@ function GoalsCard({
       aria-pressed={isSelected}
     >
       <div className={iconClassName}>
-      <img src={icon} alt={title} className="mx-auto" style={{ filter: 'invert(100%) brightness(100%)' }} />
+        <img
+          src={icon}
+          alt={title}
+          className="mx-auto"
+          style={{ filter: 'invert(100%) brightness(100%)' }}
+        />
       </div>
       <h3 className="mb-2 text-center text-xl font-medium text-blue-100">
         {title}
@@ -114,7 +125,10 @@ export function AppointmentTab() {
 
       <div className="mx-auto mb-8 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {goalsCards.map(
-          ({ icon, iconClassName, title, description, count, countClassName }, i) => (
+          (
+            { icon, iconClassName, title, description, count, countClassName },
+            i,
+          ) => (
             <GoalsCard
               key={title}
               icon={icon}
@@ -144,10 +158,15 @@ export function AppointmentTab() {
           </p>
           <button
             type="button"
-            className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-md bg-purple-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-purple-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
+            className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-md bg-purple-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-purple-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
           >
-            
-            <img src='/stone/appointment/download-icon.svg' alt='download-icon' style={{ filter: 'invert(100%) brightness(100%)' }} />Pobierz przewodnik PDF
+            <img
+              src="/stone/appointment/download-icon.svg"
+              alt="download-icon"
+              className="h-[14px] w-[14px]"
+              style={{ filter: 'invert(100%) brightness(100%)' }}
+            />
+            Pobierz przewodnik PDF
           </button>
         </div>
       )}

@@ -17,6 +17,12 @@ export function Header() {
   const activeClass =
     'inline-flex items-center justify-center px-3 py-2 rounded-lg transition-all duration-200 whitespace-nowrap gap-2 text-blue-100 bg-blue-600 z-20';
 
+  const baseStyle = {
+    filter:
+      'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
+  };
+  const activeStyle = { filter: 'invert(100%) brightness(100%)' };
+
   const handleLogout = () => {
     try {
       logout();
@@ -40,15 +46,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/stone/appointment/ico4.svg"
-                  alt="header star shine icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Strefa Mocy</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/stone/appointment/ico4.svg"
+                    alt="header star shine icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Strefa Mocy</span>
+                </div>
+              )}
             </NavLink>
 
             <NavLink
@@ -57,15 +65,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/path/achievements/ico3.svg"
-                  alt="header map point icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Mapa Miejsc Mocy</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/path/achievements/ico3.svg"
+                    alt="header map point icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Mapa Miejsc Mocy</span>
+                </div>
+              )}
             </NavLink>
 
             <NavLink
@@ -74,15 +84,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/path/review/ico1.svg"
-                  alt="header music icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Rytuały i Dźwięki</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/path/review/ico1.svg"
+                    alt="header music icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Rytuały i Dźwięki</span>
+                </div>
+              )}
             </NavLink>
 
             <NavLink
@@ -91,15 +103,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/path/achievements/ico5.svg"
-                  alt="header leaf icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Napary i Maści</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/path/achievements/ico5.svg"
+                    alt="header leaf icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Napary i Maści</span>
+                </div>
+              )}
             </NavLink>
 
             <NavLink
@@ -108,15 +122,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/path/achievements/ico4.svg"
-                  alt="header stone icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Kamienie</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/path/achievements/ico4.svg"
+                    alt="header stone icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Kamienie</span>
+                </div>
+              )}
             </NavLink>
 
             <NavLink
@@ -125,15 +141,17 @@ export function Header() {
                 `${isActive ? activeClass : baseClass} snap-start`
               }
             >
-              <div className="flex w-full items-center gap-3">
-                <img
-                  src="/path/achievements/ico6.svg"
-                  alt="header book icon"
-                  className="h-[14px] w-[14px] flex-shrink-0 filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
-                />
-                <span className="truncate">Moja Ścieżka</span>
-              </div>
+              {({ isActive }) => (
+                <div className="flex w-full items-center gap-3">
+                  <img
+                    src="/path/achievements/ico6.svg"
+                    alt="header book icon"
+                    className="h-[14px] w-[14px] flex-shrink-0 filter"
+                    style={isActive ? activeStyle : baseStyle}
+                  />
+                  <span className="truncate">Moja Ścieżka</span>
+                </div>
+              )}
             </NavLink>
           </div>
         </nav>
@@ -160,7 +178,10 @@ export function Header() {
               src="header/ico1.svg"
               alt="header user icon"
               className="h-[14px] w-[14px] filter"
-              style={{ filter: 'invert(100%) brightness(100%)' }}
+              style={{
+                filter:
+                  'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
+              }}
             />
             Nowy quiz
           </button>

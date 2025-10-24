@@ -71,7 +71,8 @@ export function Info() {
             alt="headphones icon"
             className="h-[21px] w-[21px] filter"
             style={{
-              filter: 'invert(100%) brightness(100%)',
+              filter:
+                'invert(24%) sepia(91%) saturate(6000%) hue-rotate(262deg) brightness(130%) contrast(95%)',
             }}
           />
           Biblioteka dźwięków uzdrowienia

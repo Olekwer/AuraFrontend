@@ -219,7 +219,10 @@ export function InfusionInstruction({
                   alt="little timer icon"
                   aria-hidden="true"
                   className="h-[12px] w-[12px] filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
+                  style={{
+                    filter:
+                      'invert(41%) sepia(59%) saturate(600%) hue-rotate(90deg) brightness(180%) contrast(70%)',
+                  }}
                 />
                 <span className="min-w-0">{time} min</span>
               </span>
@@ -230,7 +233,10 @@ export function InfusionInstruction({
                   alt="little temperature icon"
                   aria-hidden="true"
                   className="h-[12px] w-[12px] filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
+                  style={{
+                    filter:
+                      'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
+                  }}
                 />
                 <span className="min-w-0">{temperature}°C</span>
               </span>
@@ -241,7 +247,10 @@ export function InfusionInstruction({
                   alt="little time icon"
                   aria-hidden="true"
                   className="h-[12px] w-[12px] filter"
-                  style={{ filter: 'invert(100%) brightness(100%)' }}
+                  style={{
+                    filter:
+                      'invert(88%) sepia(25%) saturate(900%) hue-rotate(270deg) brightness(110%) contrast(95%)',
+                  }}
                 />
                 <span className="min-w-0">Kuracja: {treatment}</span>
               </span>
@@ -274,7 +283,10 @@ export function InfusionInstruction({
                         alt="accept icon"
                         aria-hidden="true"
                         className="h-[14px] w-[14px] filter"
-                        style={{ filter: 'invert(100%) brightness(100%)' }}
+                        style={{
+                          filter:
+                            'invert(41%) sepia(59%) saturate(9000%) hue-rotate(90deg) brightness(150%) contrast(85%)',
+                        }}
                       />
                     </div>
                     <div
@@ -365,7 +377,10 @@ export function InfusionInstruction({
               alt="button accept icon"
               aria-hidden="true"
               className="h-[14px] w-[14px]"
-              style={{ filter: 'invert(100%) brightness(100%)' }}
+              style={{
+                filter:
+                  'invert(65%) sepia(10%) saturate(1100%) hue-rotate(180deg) brightness(110%) contrast(130%)',
+              }}
             />
             Oznacz jako użyte
           </button>

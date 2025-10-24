@@ -4,7 +4,12 @@ export const cards = [
   {
     icon: (
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-white to-gray-200">
-        <img alt="Kryształ górski" className="h-7 w-7" src="/stone/ico1.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />
+        <img
+          alt="Kryształ górski"
+          className="h-7 w-7"
+          src="/stone/ico1.svg"
+          style={{ filter: 'invert(100%) brightness(100%)' }}
+        />
       </div>
     ),
     title: 'Kryształ górski',
@@ -16,7 +21,12 @@ export const cards = [
   {
     icon: (
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gray-800 to-black">
-        <img alt="Czarny turmalin" className="h-7 w-7" src="/stone/ico2.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />
+        <img
+          alt="Czarny turmalin"
+          className="h-7 w-7"
+          src="/stone/ico2.svg"
+          style={{ filter: 'invert(100%) brightness(100%)' }}
+        />
       </div>
     ),
     title: 'Czarny turmalin',
@@ -27,7 +37,12 @@ export const cards = [
   {
     icon: (
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-pink-300 to-rose-400">
-        <img alt="Różowy kwarc" className="h-7 w-7" src="/stone/ico3.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />
+        <img
+          alt="Różowy kwarc"
+          className="h-7 w-7"
+          src="/stone/ico3.svg"
+          style={{ filter: 'invert(100%) brightness(100%)' }}
+        />
       </div>
     ),
     title: 'Różowy kwarc',
@@ -39,7 +54,12 @@ export const cards = [
   {
     icon: (
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gray-600 to-blue-500">
-        <img alt="Labradoryt" className="h-7 w-7" src="/stone/ico4.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />
+        <img
+          alt="Labradoryt"
+          className="h-7 w-7"
+          src="/stone/ico4.svg"
+          style={{ filter: 'invert(100%) brightness(100%)' }}
+        />
       </div>
     ),
     title: 'Labradoryt',
@@ -87,7 +107,16 @@ export function Card({
         type="button"
         className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
       >
-        <img alt="add-icon" className="h-[14px] w-[14px]" src="/add-icon.svg" style={{ filter: 'invert(100%) brightness(100%)' }} />Dodaj
+        <img
+          alt="add-icon"
+          className="h-[14px] w-[14px]"
+          src="/add-icon.svg"
+          style={{
+            filter:
+              'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
+          }}
+        />
+        Dodaj
       </button>
     </div>
   );

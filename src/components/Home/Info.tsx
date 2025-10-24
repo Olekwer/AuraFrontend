@@ -234,7 +234,8 @@ export function Info() {
                   alt="star icon"
                   className="h-[21px] w-[21px] filter"
                   style={{
-                    filter: 'invert(100%) brightness(100%)',
+                    filter:
+                      'invert(86%) sepia(94%) saturate(654%) hue-rotate(2deg) brightness(102%) contrast(102%)',
                   }}
                 />
                 <h2 className="text-lg font-medium text-blue-100">Twój znak</h2>
@@ -260,7 +261,7 @@ export function Info() {
                     className="h-[21px] w-[21px] filter"
                     style={{
                       filter:
-                        'invert(30%) sepia(90%) saturate(1200%) hue-rotate(310deg) brightness(110%) contrast(110%)',
+                        'invert(40%) sepia(77%) saturate(745%) hue-rotate(-35deg) brightness(100%) contrast(90%)',
                     }}
                   />
                   <h2 className="text-lg font-medium text-blue-100">
@@ -293,7 +294,8 @@ export function Info() {
                     alt="stone icon"
                     className="h-[21px] w-[21px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(100%)',
+                      filter:
+                        'invert(58%) sepia(75%) saturate(418%) hue-rotate(255deg) brightness(110%) contrast(90%)',
                     }}
                   />
                   <h2 className="text-lg font-medium text-blue-100">
@@ -325,7 +327,8 @@ export function Info() {
                     alt="heart icon"
                     className="h-[21px] w-[21px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(100%)',
+                      filter:
+                        'invert(59%) sepia(36%) saturate(6323%) hue-rotate(306deg) brightness(101%) contrast(103%)',
                     }}
                   />
                   <h2 className="text-lg font-medium text-blue-100">Postęp</h2>
@@ -391,7 +394,8 @@ export function Info() {
                     alt="little moon icon"
                     className="h-[14px] w-[14px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(90%)',
+                      filter:
+                        'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
                     }}
                   />
                   <span className="text-sm text-blue-200">Faza księżyca</span>
@@ -410,7 +414,8 @@ export function Info() {
                     alt="little star shine icon"
                     className="h-[14px] w-[14px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(90%)',
+                      filter:
+                        'invert(88%) sepia(25%) saturate(900%) hue-rotate(270deg) brightness(110%) contrast(95%)',
                     }}
                   />
                   <span className="text-sm text-blue-200">Rytuał dnia</span>
@@ -484,7 +489,8 @@ export function Info() {
                     alt="location icon"
                     className="h-[14px] w-[14px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(100%)',
+                      filter:
+                        'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
                     }}
                   />
                   Lokalizacja
@@ -541,7 +547,8 @@ export function Info() {
                     alt="little stone icon"
                     className="h-[14px] w-[14px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(100%)',
+                      filter:
+                        'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
                     }}
                   />
                   Kamienie
@@ -572,7 +579,7 @@ export function Info() {
                 przepowiednie lunarne i zaawansowane techniki manifestacji.
               </p>
               <div className="flex flex-wrap justify-center gap-4 space-x-4 text-white sm:flex-nowrap">
-                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm md:text-xs font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-2 text-sm font-medium outline-none transition-all hover:from-purple-700 hover:to-pink-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 md:text-xs">
                   <img
                     src="path/achievements/ico1.svg"
                     alt="little star icon"
@@ -581,12 +588,15 @@ export function Info() {
                   />
                   Ścieżka Astrologiczna +9,99 zł
                 </button>
-                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-purple-500/30 px-4 py-2 text-sm md:text-xs font-medium text-purple-300 outline-none transition-all hover:bg-purple-500/10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
+                <button className="focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-purple-500/30 px-4 py-2 text-sm font-medium text-purple-300 outline-none transition-all hover:bg-purple-500/10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 md:text-xs">
                   <img
                     src="/stone/appointment/download-icon.svg"
                     alt="little download icon"
                     className="h-[14px] w-[14px] filter"
-                    style={{ filter: 'invert(100%) brightness(100%)' }}
+                    style={{
+                      filter:
+                        'invert(88%) sepia(25%) saturate(900%) hue-rotate(270deg) brightness(110%) contrast(95%)',
+                    }}
                   />
                   Rytuał zdjęcia klątwy
                 </button>

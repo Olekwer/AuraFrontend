@@ -69,7 +69,8 @@ export function RecommendedCard({
                 alt="little map point icon"
                 className="h-[14px] w-[14px] filter"
                 style={{
-                  filter: 'invert(100%) brightness(100%)',
+                  filter:
+                    'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
                 }}
               />
               {length} km

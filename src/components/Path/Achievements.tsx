@@ -25,7 +25,10 @@ function AchievementCard({
           src={icon}
           alt={iconAlt}
           className="h-7 w-7 flex-shrink-0"
-          style={{ filter: 'invert(100%) brightness(60%)' }}
+          style={{
+            filter:
+              'invert(70%) sepia(10%) saturate(150%) hue-rotate(190deg) brightness(95%) contrast(85%)',
+          }}
         />
       </div>
       <div className="flex min-w-0 flex-grow flex-col gap-3">

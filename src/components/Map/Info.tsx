@@ -200,7 +200,7 @@ export function Info() {
           <div ref={mapContainerRef} className="relative h-96 w-full">
             <div className="right-bottom-window space-y-2 rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
               <div className="flex items-center space-x-2 text-[10.5px]">
-                <div className="flex h-3 w-3 items-center justify-center rounded-full bg-gold-900">
+                <div className="flex h-3 w-3 items-center justify-center rounded-full bg-gold-200">
                   <img
                     src="/path/achievements/ico1.svg"
                     alt="star icon"
@@ -220,13 +220,14 @@ export function Info() {
               </div>
             </div>
             <div className="left-top-window rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
-              <p className="text-[10.5px] text-blue-200 flex items-center gap-1">
+              <p className="flex items-center gap-1 text-[10.5px] text-blue-200">
                 <img
                   src="/map/ico2.svg"
                   alt="plane icon"
                   className="h-[10.5px] w-[10.5px] filter"
                   style={{
-                    filter: 'invert(100%) brightness(100%)',
+                    filter:
+                      'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
                   }}
                 />
                 Kliknij na miejsce aby zobaczyć szczegóły

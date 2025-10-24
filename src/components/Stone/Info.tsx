@@ -198,7 +198,8 @@ export function Info() {
                       alt="little shine icon"
                       className="h-[17.5px] w-[17.5px] filter"
                       style={{
-                        filter: 'invert(100%) brightness(100%)',
+                        filter:
+                          'invert(52%) sepia(67%) saturate(2378%) hue-rotate(164deg) brightness(100%) contrast(100%)',
                       }}
                     />
                     <h3 className="text-lg font-medium text-blue-100">
@@ -224,7 +225,8 @@ export function Info() {
                       alt="little moon icon"
                       className="h-[17.5px] w-[17.5px] filter"
                       style={{
-                        filter: 'invert(100%) brightness(100%)',
+                        filter:
+                          'invert(24%) sepia(91%) saturate(6000%) hue-rotate(262deg) brightness(130%) contrast(95%)',
                       }}
                     />
                     <h3 className="text-lg font-medium text-blue-100">
@@ -251,14 +253,30 @@ export function Info() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <button
                 type="button"
-                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-4 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
               >
+                <img
+                  src="/stone/button-icon1.svg"
+                  alt="button eye icon"
+                  className="h-[14px] w-[14px] filter"
+                  style={{
+                    filter: 'invert(100%) brightness(100%)',
+                  }}
+                />
                 Szczegółowe właściwości
               </button>
               <button
                 type="button"
-                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-purple-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-purple-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+                className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-4 whitespace-nowrap rounded-md bg-purple-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-purple-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
               >
+                <img
+                  src="/stone/button-icon2.svg"
+                  alt="button lock icon"
+                  className="h-[14px] w-[14px] filter"
+                  style={{
+                    filter: 'invert(100%) brightness(100%)',
+                  }}
+                />
                 Dodaj do kolekcji
               </button>
             </div>

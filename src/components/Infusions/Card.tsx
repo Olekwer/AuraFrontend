@@ -107,7 +107,7 @@ export function Card({
           <div className="flex min-w-0 flex-1 flex-col">
             <div className="mb-1 flex items-center gap-2">
               <h3
-                className="text-base font-medium text-blue-100 sm:text-lg text-left"
+                className="text-left text-base font-medium text-blue-100 sm:text-lg"
                 title={title}
               >
                 {title}
@@ -126,14 +126,15 @@ export function Card({
               {description}
             </p>
 
-            <div className="mt-auto flex flex-wrap items-center gap-3 text-sm mb-4">
+            <div className="mb-4 mt-auto flex flex-wrap items-center gap-3 text-sm">
               <span className="flex items-center gap-1 text-sm text-blue-300">
                 <img
                   src="/infusions/little-ico1.svg"
                   alt="little time icon"
                   className="h-[14px] w-[14px] filter"
                   style={{
-                    filter: 'invert(100%) brightness(100%)',
+                    filter:
+                      'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
                   }}
                 />
                 {time} min
@@ -221,7 +222,8 @@ export function Card({
               alt="little moon icon"
               className="h-[14px] w-[14px] filter"
               style={{
-                filter: 'invert(100%) brightness(100%)',
+                filter:
+                  'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
               }}
             />
             <span className="ml-1">Dodaj do ulubionych</span>

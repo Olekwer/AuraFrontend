@@ -64,11 +64,13 @@ function StatPopup({
 function ActivityRow({
   icon,
   iconAlt,
+  iconStyle,
   text,
   count,
 }: {
   icon: string;
   iconAlt: string;
+  iconStyle: React.CSSProperties;
   text: string;
   count: number;
 }) {
@@ -78,7 +80,7 @@ function ActivityRow({
         src={icon}
         alt={iconAlt}
         className="mr-2 h-[18px] w-[18px]"
-        style={{ filter: 'invert(100%) brightness(100%)' }}
+        style={iconStyle}
       />
       <span>{text}</span>
       <span className="ml-auto font-medium text-blue-100">{count}</span>
@@ -162,24 +164,40 @@ export function StatisticsTab() {
             <ActivityRow
               icon="/path/statistics/activities/ico1.svg"
               iconAlt="Rytuały uzdrowienia"
+              iconStyle={{
+                filter:
+                  'invert(24%) sepia(91%) saturate(6000%) hue-rotate(262deg) brightness(130%) contrast(95%)',
+              }}
               text="Rytuały uzdrowienia"
               count={0}
             />
             <ActivityRow
               icon="/path/statistics/activities/ico2.svg"
               iconAlt="Miejsca mocy"
+              iconStyle={{
+                filter:
+                  'invert(40%) sepia(77%) saturate(745%) hue-rotate(-35deg) brightness(100%) contrast(90%)',
+              }}
               text="Miejsca mocy"
               count={0}
             />
             <ActivityRow
               icon="/path/statistics/activities/ico3.svg"
               iconAlt="Kamienie"
+              iconStyle={{
+                filter:
+                  'invert(52%) sepia(67%) saturate(2378%) hue-rotate(164deg) brightness(100%) contrast(100%)',
+              }}
               text="Kamienie"
               count={0}
             />
             <ActivityRow
               icon="/path/statistics/activities/ico4.svg"
               iconAlt="Napary"
+              iconStyle={{
+                filter:
+                  'invert(41%) sepia(59%) saturate(9000%) hue-rotate(90deg) brightness(150%) contrast(85%)',
+              }}
               text="Napary"
               count={0}
             />

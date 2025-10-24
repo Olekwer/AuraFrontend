@@ -125,20 +125,22 @@ export function DescriptionModal({
   cost,
   onClose,
 }: {
-    title: string;
-    description: string;
-    medicinalProperties: string[];
-    stoneCare: string[];
-    rituals: string[];
-    chakra: string;
-    hardness: string;
-    origin: string;
-    cost: string;
-} & {onClose: () => void}) {
+  title: string;
+  description: string;
+  medicinalProperties: string[];
+  stoneCare: string[];
+  rituals: string[];
+  chakra: string;
+  hardness: string;
+  origin: string;
+  cost: string;
+} & { onClose: () => void }) {
   const dialogRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    dialogRef.current?.querySelector<HTMLButtonElement>('button[data-close]')?.focus();
+    dialogRef.current
+      ?.querySelector<HTMLButtonElement>('button[data-close]')
+      ?.focus();
   }, []);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -147,14 +149,26 @@ export function DescriptionModal({
     }
   };
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-6 backdrop-blur-sm" onMouseDown={handleBackdropClick} aria-modal="true" role="dialog">
-      <div ref={dialogRef} className="flex max-h-[90vh] w-full max-w-4xl flex-col gap-6 overflow-y-auto rounded-xl border border-blue-800/30 bg-slate-800/90 p-8 text-left">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-6 backdrop-blur-sm"
+      onMouseDown={handleBackdropClick}
+      aria-modal="true"
+      role="dialog"
+    >
+      <div
+        ref={dialogRef}
+        className="flex max-h-[90vh] w-full max-w-4xl flex-col gap-6 overflow-y-auto rounded-xl border border-blue-800/30 bg-slate-800/90 p-8 text-left"
+      >
         <div className="mb-6 flex items-start justify-between">
           <div>
             <h3 className="mb-2 text-3xl font-medium text-blue-100">{title}</h3>
             <p className="mb-4 text-lg text-blue-300/80">{description}</p>
           </div>
-          <button data-close onClick={onClose} className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+          <button
+            data-close
+            onClick={onClose}
+            className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+          >
             Zamknij
           </button>
         </div>
@@ -169,8 +183,11 @@ export function DescriptionModal({
                   <img
                     src="/stone/appointment/ico4.svg"
                     alt="little star shine icon"
-                    className="w-[14px] h-[14px] flex-shrink-0 mr-3"
-                    style={{ filter: 'invert(100%) brightness(100%)' }}
+                    className="mr-3 h-[14px] w-[14px] flex-shrink-0"
+                    style={{
+                      filter:
+                        'invert(52%) sepia(67%) saturate(2378%) hue-rotate(164deg) brightness(100%) contrast(100%)',
+                    }}
                   />
                   {property}
                 </div>

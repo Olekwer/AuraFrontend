@@ -86,7 +86,7 @@ export function Card({
 
   return (
     <div className="flex w-full max-w-full flex-col gap-4 rounded-xl border border-blue-800/30 bg-slate-800/40 p-4 transition-all duration-300 hover:bg-slate-700/40 sm:p-5">
-      <div className="flex w-full items-start space-x-3 sm:space-x-4 mb-4">
+      <div className="mb-4 flex w-full items-start space-x-3 sm:space-x-4">
         <div className="flex-shrink-0">
           <div className="rounded-full p-2 sm:p-3" aria-hidden>
             <div className="flex h-10 w-10 items-center justify-center sm:h-[46px] sm:w-[46px]">
@@ -98,7 +98,7 @@ export function Card({
         <div className="flex min-w-0 flex-1 flex-col">
           <div className="mb-1 flex items-center gap-2">
             <h3
-              className="text-base font-medium text-blue-100 sm:text-lg text-left"
+              className="text-left text-base font-medium text-blue-100 sm:text-lg"
               title={title}
             >
               {title}
@@ -125,7 +125,8 @@ export function Card({
                 alt="little time icon"
                 className="h-[14px] w-[14px] filter"
                 style={{
-                  filter: 'invert(100%) brightness(100%)',
+                  filter:
+                    'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
                 }}
               />
               {time} min
@@ -189,7 +190,8 @@ export function Card({
             alt="headphones icon"
             className="h-[14px] w-[14px] filter"
             style={{
-              filter: 'invert(100%) brightness(100%)',
+              filter:
+                'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
             }}
           />
           <span className="ml-1">Audio</span>

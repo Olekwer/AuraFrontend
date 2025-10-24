@@ -65,7 +65,7 @@ export function SoundCard({
           />
         </button>
       </div>
-      <p className="mb-3 text-sm text-blue-300/60 text-left">{description}</p>
+      <p className="mb-3 text-left text-sm text-blue-300/60">{description}</p>
       <div className="mb-3 flex items-center justify-between">
         <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-blue-500/30 bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
           {tag}
@@ -73,7 +73,7 @@ export function SoundCard({
         <span className="text-sm text-blue-400/60">{time}</span>
       </div>
       <div className="flex space-x-2">
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 text-white">
+        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-8 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-blue-600 px-3 text-sm font-medium text-white outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-2.5 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
           <img
             src="/rituals/soundCard/ico1.svg"
             alt="play icon"
@@ -90,7 +90,8 @@ export function SoundCard({
             alt="download icon"
             className="h-[14px] w-[14px] filter"
             style={{
-              filter: 'invert(100%) brightness(100%)',
+              filter:
+                'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
             }}
           />
         </button>
