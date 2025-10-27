@@ -1,4 +1,4 @@
-export const otherCards = [
+export const cards = [
   {
     title: 'Las Bukowy',
     difficulty: 'łatwy',
@@ -152,7 +152,7 @@ export const otherCards = [
   },
 ];
 
-export function OtherCard({
+export function Card({
   title,
   difficulty,
   element,
