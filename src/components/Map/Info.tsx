@@ -3,7 +3,29 @@ import mapboxgl from 'mapbox-gl';
 import markersData from '../../pages/Map/Map.json';
 import { TabButton } from '../Common/TabButton';
 import { recommendedCards, RecommendedCard } from './RecommendedCard';
-import { otherCards, OtherCard } from './OtherCard';
+//import { otherCards, OtherCard } from './OtherCard';
+import { useAuthStore } from '../../store/auth';
+import { cards, Card } from './Card';
+
+type SimpleDashboardResponse = {
+  user: {
+    id: string;
+    email: string;
+    zodiacSign: string;
+    element: string;
+  };
+  powerPlace: {
+    name: string;
+    distance: number;
+  };
+  powerStone: {
+    name: string;
+    description: string;
+  };
+  progress: {
+    ritualsCompleted: number;
+  };
+};
 
 mapboxgl.accessToken =
   import.meta.env.VITE_MAPBOX_TOKEN ||
@@ -51,6 +73,15 @@ export function Info() {
       color: m.color,
     })),
   );
+
+  const [simpleDashboard, setSimpleDashboard] =
+    useState<SimpleDashboardResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const [selectedPowerPlace, setSelectedPowerPlace] = useState<boolean>(false);
+
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const token = useAuthStore((s) => s.token);
 
   const initMap = () => {
     if (!mapContainerRef.current) return;
@@ -128,13 +159,26 @@ export function Info() {
 
       el.addEventListener('click', (e) => {
         e.stopPropagation();
-        popupRef.current?.setLngLat(coords).setText(title).addTo(map);
+
+        if (id === '1') {
+          if (selectedPowerPlace) {
+            setSelectedPowerPlace(false);
+            popupRef.current?.remove();
+          } else {
+            setSelectedPowerPlace(true);
+            popupRef.current?.setLngLat(coords).setText(title).addTo(map);
+          }
+        } else {
+          popupRef.current?.setLngLat(coords).setText(title).addTo(map);
+        }
       });
       el.addEventListener('mouseenter', () => {
         popupRef.current?.setLngLat(coords).setText(title).addTo(map);
       });
       el.addEventListener('mouseleave', () => {
-        popupRef.current?.remove();
+        if (!selectedPowerPlace || id !== '1') {
+          popupRef.current?.remove();
+        }
       });
 
       markersRef.current[id] = marker;
@@ -159,7 +203,42 @@ export function Info() {
     if (mapRef.current) {
       renderMarkers();
     }
-  }, [markers]);
+  }, [markers, selectedPowerPlace]);
+
+  useEffect(() => {
+    if (!isAuthenticated || !token) {
+      setSimpleDashboard(null);
+      return;
+    }
+
+    const fetchDashboards = async () => {
+      try {
+        setError(null);
+        const res1 = await fetch(
+          'https://web-production-3964.up.railway.app/users/simple-dashboard',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: 'application/json',
+            },
+          },
+        );
+        if (!res1.ok) {
+          const errorData = await res1.json().catch(() => null);
+          throw new Error(
+            `Error ${res1.status}: ${errorData?.message ?? res1.statusText}`,
+          );
+        }
+        const data1: SimpleDashboardResponse = await res1.json();
+        setSimpleDashboard(data1);
+      } catch (err: any) {
+        setError(err.message || 'Unknown error');
+        setSimpleDashboard(null);
+      }
+    };
+
+    fetchDashboards();
+  }, [isAuthenticated, token]);
 
   return (
     <div className="w-full">
@@ -195,46 +274,69 @@ export function Info() {
           </div>
         </TabButton>
       </div>
+      {error && (
+        <div className="mb-6 w-full rounded border border-red-600 bg-red-900/70 p-4 text-center text-red-300">
+          Error: {error}
+        </div>
+      )}
       {tab === 'Mapa' && (
-        <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8">
-          <div ref={mapContainerRef} className="relative h-96 w-full">
-            <div className="right-bottom-window space-y-2 rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
-              <div className="flex items-center space-x-2 text-[10.5px]">
-                <div className="flex h-3 w-3 items-center justify-center rounded-full bg-gold-200">
+        <>
+          <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8">
+            <div ref={mapContainerRef} className="relative h-96 w-full">
+              <div className="right-bottom-window space-y-2 rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
+                <div className="flex items-center space-x-2 text-[10.5px]">
+                  <div className="flex h-3 w-3 items-center justify-center rounded-full bg-gold-200">
+                    <img
+                      src="/path/achievements/ico1.svg"
+                      alt="star icon"
+                      className="h-[7px] w-[7px] filter"
+                      style={{
+                        filter: 'invert(100%) brightness(100%)',
+                      }}
+                    />
+                  </div>
+                  <span className="text-blue-200">Polecane dla Ciebie</span>
+                </div>
+                <div className="flex items-center space-x-2 text-[10.5px]">
+                  <div className="h-3 w-3 rounded-full bg-green-400">
+                    <div className="m-1 h-1 w-1 rounded-full bg-white"></div>
+                  </div>
+                  <span className="text-blue-200">Odwiedzone</span>
+                </div>
+              </div>
+              <div className="left-top-window rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
+                <p className="flex items-center gap-1 text-[10.5px] text-blue-200">
                   <img
-                    src="/path/achievements/ico1.svg"
-                    alt="star icon"
-                    className="h-[7px] w-[7px] filter"
+                    src="/map/ico2.svg"
+                    alt="plane icon"
+                    className="h-[10.5px] w-[10.5px] filter"
                     style={{
-                      filter: 'invert(100%) brightness(100%)',
+                      filter:
+                        'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
                     }}
                   />
-                </div>
-                <span className="text-blue-200">Polecane dla Ciebie</span>
+                  Kliknij na miejsce aby zobaczyć szczegóły
+                </p>
               </div>
-              <div className="flex items-center space-x-2 text-[10.5px]">
-                <div className="h-3 w-3 rounded-full bg-green-400">
-                  <div className="m-1 h-1 w-1 rounded-full bg-white"></div>
-                </div>
-                <span className="text-blue-200">Odwiedzone</span>
-              </div>
-            </div>
-            <div className="left-top-window rounded-lg bg-slate-900/80 p-3 backdrop-blur-sm">
-              <p className="flex items-center gap-1 text-[10.5px] text-blue-200">
-                <img
-                  src="/map/ico2.svg"
-                  alt="plane icon"
-                  className="h-[10.5px] w-[10.5px] filter"
-                  style={{
-                    filter:
-                      'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
-                  }}
-                />
-                Kliknij na miejsce aby zobaczyć szczegóły
-              </p>
             </div>
           </div>
-        </div>
+          {selectedPowerPlace && simpleDashboard && (
+            <div className="mt-6">
+              <Card
+                title={simpleDashboard.powerPlace.name}
+                length={simpleDashboard.powerPlace.distance.toString()}
+                difficulty={cards[0].difficulty}
+                element={cards[0].element}
+                description={cards[0].description}
+                icon={cards[0].icon}
+                natureDescription={cards[0].natureDescription}
+                spiritualSignificance={cards[0].spiritualSignificance}
+                bestTime={cards[0].bestTime}
+                ritual={cards[0].ritual}
+              />
+            </div>
+          )}
+        </>
       )}
 
       {tab === 'Lista' && (
@@ -252,6 +354,17 @@ export function Info() {
               Polecane dla Twojego żywiołu (water)
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {simpleDashboard && (
+                <RecommendedCard
+                  title={simpleDashboard.powerPlace.name}
+                  length={simpleDashboard.powerPlace.distance.toString()}
+                  icon={recommendedCards[0].icon}
+                  description={recommendedCards[0].description}
+                  statusType={recommendedCards[0].statusType}
+                />
+              )}
+
+              {/*
               {recommendedCards.map(
                 ({ icon, title, description, length, statusType }, idx) => (
                   <RecommendedCard
@@ -264,6 +377,7 @@ export function Info() {
                   />
                 ),
               )}
+              */}
             </div>
           </div>
           <div>
@@ -271,6 +385,7 @@ export function Info() {
               Inne miejsca mocy
             </h2>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {/*
               {otherCards.map(({ icon, title, length, description }, idx) => (
                 <OtherCard
                   key={idx}
@@ -280,6 +395,7 @@ export function Info() {
                   description={description}
                 />
               ))}
+              */}
             </div>
           </div>
         </div>
