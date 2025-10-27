@@ -18,6 +18,22 @@ function getAudioSrcFromTitle(title: string) {
   return `/audio/${slug}.mp3`;
 }
 
+async function checkUrlExists(url: string): Promise<boolean> {
+  try {
+    const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+    if (res.ok) return true;
+
+    const res2 = await fetch(url, {
+      method: 'GET',
+      headers: { Range: 'bytes=0-0' },
+      cache: 'no-store',
+    });
+    return res2.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function AudioPlayer({ className = '' }: { className?: string }) {
   const {
     currentTitle,
@@ -32,6 +48,8 @@ export function AudioPlayer({ className = '' }: { className?: string }) {
     setDuration,
     setProgress,
     setPlaying,
+    currentSrc,
+    setCurrentSrc,
   } = useAudioStore();
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -45,55 +63,74 @@ export function AudioPlayer({ className = '' }: { className?: string }) {
         audioRef.current = null;
       }
       setError(null);
+      setCurrentSrc(null);
       return;
     }
 
     const src = getAudioSrcFromTitle(currentTitle);
 
-    if (!audioRef.current || !audioRef.current.src.endsWith(src)) {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = '';
-        audioRef.current = null;
-      }
-
-      const a = new Audio(src);
-      audioRef.current = a;
-      a.preload = 'metadata';
-      a.crossOrigin = 'anonymous';
-      a.volume = 1;
-
-      const onLoadedMetadata = () => {
-        const dur = isFinite(a.duration) ? a.duration : null;
-        setDuration(dur);
-      };
-
-      const onTimeUpdate = () => {
-        setPosition(a.currentTime);
-      };
-
-      const onEnded = () => {
-        stop();
-      };
-
-      const onError = () => {
-        setError("Couldn't download audio");
-        setPlaying(false);
-      };
-
-      a.addEventListener('loadedmetadata', onLoadedMetadata);
-      a.addEventListener('timeupdate', onTimeUpdate);
-      a.addEventListener('ended', onEnded);
-      a.addEventListener('error', onError);
-
-      return () => {
-        a.removeEventListener('loadedmetadata', onLoadedMetadata);
-        a.removeEventListener('timeupdate', onTimeUpdate);
-        a.removeEventListener('ended', onEnded);
-        a.removeEventListener('error', onError);
-      };
+    if (audioRef.current && audioRef.current.src.endsWith(src)) {
+      setCurrentSrc(src);
+      return;
     }
-  }, [visible, currentTitle]);
+
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = '';
+      audioRef.current = null;
+    }
+
+    const a = new Audio(src);
+    audioRef.current = a;
+    setCurrentSrc(src);
+    a.preload = 'metadata';
+    a.crossOrigin = 'anonymous';
+    a.volume = 1;
+
+    const onLoadedMetadata = () => {
+      const dur = isFinite(a.duration) ? a.duration : null;
+      setDuration(dur);
+      setError(null);
+    };
+
+    const onTimeUpdate = () => {
+      setPosition(a.currentTime);
+    };
+
+    const onEnded = () => {
+      stop();
+    };
+
+    const onError = async () => {
+      const exists = await checkUrlExists(src);
+      if (!exists) {
+        setError('Plik audio nie istnieje lub nie jest dostępny.');
+      } else {
+        setError('Nie udało się odtworzyć audio.');
+      }
+      setPlaying(false);
+    };
+
+    a.addEventListener('loadedmetadata', onLoadedMetadata);
+    a.addEventListener('timeupdate', onTimeUpdate);
+    a.addEventListener('ended', onEnded);
+    a.addEventListener('error', onError);
+
+    return () => {
+      a.removeEventListener('loadedmetadata', onLoadedMetadata);
+      a.removeEventListener('timeupdate', onTimeUpdate);
+      a.removeEventListener('ended', onEnded);
+      a.removeEventListener('error', onError);
+    };
+  }, [
+    visible,
+    currentTitle,
+    setCurrentSrc,
+    setDuration,
+    setPosition,
+    setPlaying,
+    stop,
+  ]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -130,11 +167,51 @@ export function AudioPlayer({ className = '' }: { className?: string }) {
 
   const handleToggle = () => {
     if (!currentTitle) return;
-    togglePlayPause(currentTitle);
+    togglePlayPause(currentTitle, currentSrc ?? undefined);
   };
 
   const handleClose = () => {
     stop();
+  };
+
+  const handleDownload = async () => {
+    if (!currentTitle) return;
+    const src = currentSrc ?? getAudioSrcFromTitle(currentTitle);
+    const exists = await checkUrlExists(src);
+    if (!exists) {
+      setError('Nie można pobrać: plik audio nie istnieje.');
+      return;
+    }
+    try {
+      const response = await fetch(src, { cache: 'no-store' });
+      if (!response.ok) {
+        setError('Nie można pobrać pliku audio.');
+        return;
+      }
+      const contentType = response.headers.get('Content-Type') || '';
+      if (!contentType.startsWith('audio/')) {
+        setError('Plik nie jest formatem audio.');
+        return;
+      }
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${(currentTitle || 'audio')
+        .toLowerCase()
+        .replace(/[^a-z0-9а-яёіїєґ\s-]/gi, '')
+        .trim()
+        .replace(/\s+/g, '-')}.mp3`;
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    } catch {
+      setError('Błąd podczas pobierania pliku.');
+    }
   };
 
   if (!visible || !currentTitle) return null;
@@ -205,15 +282,7 @@ export function AudioPlayer({ className = '' }: { className?: string }) {
             </button>
 
             <button
-              onClick={() => {
-                const src = getAudioSrcFromTitle(currentTitle);
-                const a = document.createElement('a');
-                a.href = src;
-                a.download = '';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-              }}
+              onClick={handleDownload}
               className="inline-flex h-8 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-3 text-sm font-medium outline-none transition-all"
             >
               <img

@@ -3,6 +3,7 @@ import { create } from 'zustand';
 type AudioState = {
   currentTitle: string | null;
   currentTime: string | null;
+  currentSrc: string | null;
 
   visible: boolean;
   playing: boolean;
@@ -11,8 +12,8 @@ type AudioState = {
   duration: number | null;
   progress: number;
 
-  showTrack: (title: string, time: string) => void;
-  togglePlayPause: (title?: string) => void;
+  showTrack: (title: string, time: string, src?: string) => void;
+  togglePlayPause: (title?: string, src?: string) => void;
   stop: () => void;
   hide: () => void;
   setPlaying: (v: boolean) => void;
@@ -20,11 +21,14 @@ type AudioState = {
   setPosition: (seconds: number) => void;
   setDuration: (seconds: number | null) => void;
   setProgress: (percent: number) => void;
+  setCurrentSrc: (src: string | null) => void;
 };
 
 export const useAudioStore = create<AudioState>((set, get) => ({
   currentTitle: null,
   currentTime: null,
+  currentSrc: null,
+
   visible: false,
   playing: false,
 
@@ -32,10 +36,11 @@ export const useAudioStore = create<AudioState>((set, get) => ({
   duration: null,
   progress: 0,
 
-  showTrack: (title: string, time: string) =>
+  showTrack: (title: string, time: string, src?: string) =>
     set({
       currentTitle: title,
       currentTime: time,
+      currentSrc: src ?? null,
       visible: true,
       playing: true,
       position: 0,
@@ -43,11 +48,12 @@ export const useAudioStore = create<AudioState>((set, get) => ({
       progress: 0,
     }),
 
-  togglePlayPause: (title?: string) => {
+  togglePlayPause: (title?: string, src?: string) => {
     const s = get();
     if (title && s.currentTitle !== title) {
       set({
         currentTitle: title,
+        currentSrc: src ?? null,
         playing: true,
         visible: true,
         position: 0,
@@ -63,6 +69,7 @@ export const useAudioStore = create<AudioState>((set, get) => ({
     set({
       currentTitle: null,
       currentTime: null,
+      currentSrc: null,
       visible: false,
       playing: false,
       position: 0,
@@ -125,4 +132,6 @@ export const useAudioStore = create<AudioState>((set, get) => ({
         position: pos,
       };
     }),
+
+  setCurrentSrc: (src: string | null) => set({ currentSrc: src }),
 }));
