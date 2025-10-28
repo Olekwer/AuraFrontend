@@ -12,7 +12,7 @@ function formatTime(seconds: number | null) {
 function getAudioSrcFromTitle(title: string) {
   const slug = title
     .toLowerCase()
-    .replace(/[^a-z0-9а-яёіїєґ\s-]/gi, '')
+    .replace(/[^a-z0-9а-яё\s-]/gi, '')
     .trim()
     .replace(/\s+/g, '-');
   return `/audio/${slug}.mp3`;
@@ -200,7 +200,7 @@ export function AudioPlayer({ className = '' }: { className?: string }) {
       a.href = url;
       a.download = `${(currentTitle || 'audio')
         .toLowerCase()
-        .replace(/[^a-z0-9а-яёіїєґ\s-]/gi, '')
+        .replace(/[^a-z0-9а-яё\s-]/gi, '')
         .trim()
         .replace(/\s+/g, '-')}.mp3`;
       a.rel = 'noopener noreferrer';

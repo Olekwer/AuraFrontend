@@ -54,12 +54,12 @@
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  z-index: 9999;
+  z-index: 40;
 }
 
 .right-bottom-window {
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
-  z-index: 9999;
+  z-index: 40;
 }

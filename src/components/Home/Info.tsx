@@ -223,12 +223,12 @@ export function Info() {
 
       {simpleDashboard && (
         <>
-          <div className="mb-6 grid w-full grid-cols-1 gap-6 md:grid-cols-4">
+          <div className="mb-7 grid w-full grid-cols-1 gap-6 md:grid-cols-4">
             <NavLink
               to="/profile"
               className="flex min-h-[120px] cursor-pointer flex-col items-start justify-center rounded-xl border border-blue-700/40 bg-gradient-to-r from-slate-800/60 to-blue-900/40 p-6"
             >
-              <div className="mb-2 flex items-center justify-start space-x-2">
+              <div className="mb-6 flex items-center justify-start space-x-2">
                 <img
                   src="/path/achievements/ico1.svg"
                   alt="star icon"
@@ -240,7 +240,7 @@ export function Info() {
                 />
                 <h2 className="text-lg font-medium text-blue-100">Twój znak</h2>
               </div>
-              <div className="mb-4 text-xl text-blue-300">{zodiacSign}</div>
+              <div className="mb-7 text-xl text-blue-300">{zodiacSign}</div>
               <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center overflow-hidden whitespace-nowrap rounded-md border border-gold-900/30 bg-gold-900/20 px-2 py-0.5 text-xs font-medium text-gold-200 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
                 {element}
               </span>
@@ -254,7 +254,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="mb-2 flex items-center justify-start space-x-2">
+                <div className="mb-4 flex items-center justify-start space-x-2 md:mb-7">
                   <img
                     src="/ico1.svg"
                     alt="map point icon"
@@ -269,7 +269,7 @@ export function Info() {
                   </h2>
                 </div>
 
-                <div className="text-left text-blue-300">
+                <div className="mb-4 text-left text-blue-300 md:mb-7">
                   {simpleDashboard.powerPlace.name},{' '}
                   {simpleDashboard.powerPlace.distance} km
                 </div>
@@ -288,7 +288,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="mb-2 flex items-center justify-start space-x-2">
+                <div className="mb-4 flex items-center justify-start space-x-2 xl:mb-7">
                   <img
                     src="/path/achievements/ico4.svg"
                     alt="stone icon"
@@ -302,7 +302,7 @@ export function Info() {
                     Kamień mocy
                   </h2>
                 </div>
-                <div className="text-left text-blue-300">
+                <div className="mb-4 text-left text-blue-300 xl:mb-7">
                   {simpleDashboard.powerStone.name} -{' '}
                   {simpleDashboard.powerStone.description}
                 </div>
@@ -313,7 +313,7 @@ export function Info() {
             </div>
 
             <div
-              className="gradient-border mb-8 flex w-full flex-col justify-center whitespace-pre-line rounded-xl bg-slate-800/60 from-purple-700 via-pink-700 to-purple-700 px-6 py-6"
+              className="gradient-border flex w-full flex-col justify-center whitespace-pre-line rounded-xl bg-slate-800/60 from-purple-700 via-pink-700 to-purple-700 px-6 py-6"
               style={
                 { '--gradient-colors': gradients[2] } as React.CSSProperties & {
                   [key: string]: string;
@@ -321,7 +321,7 @@ export function Info() {
               }
             >
               <div className="flex flex-col items-start">
-                <div className="mb-2 flex items-center justify-start space-x-2">
+                <div className="mb-6 flex items-center justify-start space-x-2 md:mb-16 lg:mb-10">
                   <img
                     src="/stone/ico3.svg"
                     alt="heart icon"
@@ -333,7 +333,7 @@ export function Info() {
                   />
                   <h2 className="text-lg font-medium text-blue-100">Postęp</h2>
                 </div>
-                <div className="text-blue-300">
+                <div className="mb-10 text-left text-blue-300 md:mb-16 lg:mb-10">
                   {simpleDashboard.progress.ritualsCompleted} rytuałów
                   wykonanych
                 </div>
