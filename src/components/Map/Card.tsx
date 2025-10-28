@@ -175,63 +175,75 @@ export function Card({
   bestTime: string;
   ritual: string;
 }) {
+  const difficultyColors =
+    difficulty === 'łatwy'
+      ? 'bg-green-100/10 text-green-300 border-green-500/30'
+      : difficulty === 'średni'
+        ? 'bg-yellow-100/10 text-yellow-300 border-yellow-500/30'
+        : 'bg-red-100/10 text-red-300 border-red-500/30';
+
+  const elementGradient =
+    element === 'earth'
+      ? 'from-green-500 to-brown-500'
+      : element === 'water'
+        ? 'from-blue-500 to-cyan-500'
+        : element === 'fire'
+          ? 'from-red-500 to-orange-500'
+          : 'from-purple-500 to-pink-500';
+
+  const isNightIcon =
+    bestTime === 'południe (12:00-14:00)' ||
+    bestTime === 'każda pora (grota)' ||
+    bestTime === 'zachód słońca (19:00-21:00)' ||
+    bestTime === 'świt (4:30-6:00)';
+
   return (
-    <div className="flex flex-col gap-6 rounded-xl border border-blue-800/30 bg-slate-800/40 p-8">
-      <div className="mb-6 flex items-start justify-between">
-        <div>
-          <h3 className="mb-2 text-2xl font-medium text-blue-100">{title}</h3>
-          <div className="mb-4 flex items-center space-x-4">
-            {difficulty === 'łatwy' ? (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-green-500/30 bg-green-500/20 px-2 py-0.5 text-xs font-medium text-green-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {difficulty}
-              </span>
-            ) : difficulty === 'średni' ? (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-yellow-500/30 bg-yellow-500/20 px-2 py-0.5 text-xs font-medium text-yellow-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {difficulty}
-              </span>
-            ) : (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-red-500/30 bg-red-500/20 px-2 py-0.5 text-xs font-medium text-red-300 transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {difficulty}
-              </span>
-            )}
-            {element === 'earth' ? (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive to-brown-500 inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-green-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {element}
-              </span>
-            ) : element === 'water' ? (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-blue-500 to-cyan-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {element}
-              </span>
-            ) : element === 'fire' ? (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-red-500 to-orange-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {element}
-              </span>
-            ) : (
-              <span className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-md border border-none border-transparent bg-gradient-to-r from-purple-500 to-pink-500 px-2 py-0.5 text-xs font-medium text-white transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3">
-                {element}
-              </span>
-            )}
-            <span className="flex items-center text-sm text-blue-300">
+    <div className="w-full max-w-full rounded-xl border border-blue-800/30 bg-slate-800/40 p-4 text-left sm:p-6 md:p-8">
+      <div className="flex w-full items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="mb-2 text-lg font-medium text-blue-100 sm:text-xl md:text-2xl">
+            {title}
+          </h3>
+
+          <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
+            <span
+              className={`inline-flex items-center gap-2 rounded-md border px-2 py-0.5 text-xs font-medium ${difficultyColors}`}
+            >
+              {difficulty}
+            </span>
+
+            <span
+              className={`inline-flex items-center gap-2 rounded-md bg-gradient-to-r px-2 py-0.5 text-xs font-medium text-white ${elementGradient}`}
+            >
+              {element}
+            </span>
+
+            <span className="ml-1 flex items-center gap-2 text-sm text-blue-300">
               <img
                 src="/path/achievements/ico3.svg"
                 alt="map point icon"
-                className="h-[14px] w-[14px] flex-shrink-0 filter"
+                className="h-3.5 w-3.5 filter"
                 style={{
                   filter:
                     'invert(65%) sepia(10%) saturate(1400%) hue-rotate(180deg) brightness(110%) contrast(100%)',
                 }}
               />
-              {length} km
+              <span className="text-sm">{length} km</span>
             </span>
           </div>
-          <p className="mb-4 text-blue-300/80">{description}</p>
+
+          <p className="mb-3 text-sm leading-relaxed text-blue-300/85">
+            {description}
+          </p>
         </div>
-        {icon}
+
+        <div className="shrink-0">{icon}</div>
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="space-y-4">
           <div>
-            <h4 className="mb-2 flex items-center text-lg font-medium text-blue-100">
+            <h4 className="mb-1 flex items-center gap-2 text-sm font-medium text-blue-100 sm:text-base">
               <img
                 src="/rituals/additionalRitualCard/ico2.svg"
                 alt="tree icon"
@@ -243,10 +255,13 @@ export function Card({
               />
               Opis przyrodniczy
             </h4>
-            <p className="text-sm text-blue-300/80">{natureDescription}</p>
+            <p className="text-xs leading-tight text-blue-300/80 sm:text-sm">
+              {natureDescription}
+            </p>
           </div>
+
           <div>
-            <h4 className="mb-2 flex items-center text-lg font-medium text-blue-100">
+            <h4 className="mb-1 flex items-center gap-2 text-sm font-medium text-blue-100 sm:text-base">
               <img
                 src="/infusions/little-ico1.svg"
                 alt="time icon"
@@ -258,38 +273,26 @@ export function Card({
               />
               Najlepszy czas
             </h4>
-            <p className="flex items-center text-sm text-blue-300/80">
-              {bestTime === 'południe (12:00-14:00)' ||
-              bestTime === 'każda pora (grota)' ||
-              bestTime === 'zachód słońca (19:00-21:00)' ||
-              bestTime === 'świt (4:30-6:00)' ? (
-                <img
-                  src="/ico5.svg"
-                  alt="little moon icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter:
-                      'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)',
-                  }}
-                />
-              ) : (
-                <img
-                  src="/infusions/little-ico4.svg"
-                  alt="little sun icon"
-                  className="h-[14px] w-[14px] filter"
-                  style={{
-                    filter:
-                      'invert(56%) sepia(98%) saturate(7500%) hue-rotate(2deg) brightness(110%) contrast(90%)',
-                  }}
-                />
-              )}
-              {bestTime}
+
+            <p className="flex items-center gap-2 text-xs text-blue-300/80 sm:text-sm">
+              <img
+                src={isNightIcon ? '/ico5.svg' : '/infusions/little-ico4.svg'}
+                alt={isNightIcon ? 'moon icon' : 'sun icon'}
+                className="h-3.5 w-3.5 filter"
+                style={{
+                  filter: isNightIcon
+                    ? 'invert(40%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(90%)'
+                    : 'invert(56%) sepia(98%) saturate(7500%) hue-rotate(2deg) brightness(110%) contrast(90%)',
+                }}
+              />
+              <span className="leading-tight">{bestTime}</span>
             </p>
           </div>
         </div>
+
         <div className="space-y-4">
           <div>
-            <h4 className="mb-2 flex items-center text-lg font-medium text-blue-100">
+            <h4 className="mb-1 flex items-center gap-2 text-sm font-medium text-blue-100 sm:text-base">
               <img
                 src="/path/achievements/ico1.svg"
                 alt="star icon"
@@ -301,10 +304,13 @@ export function Card({
               />
               Znaczenie duchowe
             </h4>
-            <p className="text-sm text-blue-300/80">{spiritualSignificance}</p>
+            <p className="text-xs leading-tight text-blue-300/80 sm:text-sm">
+              {spiritualSignificance}
+            </p>
           </div>
+
           <div>
-            <h4 className="mb-2 flex items-center text-lg font-medium text-blue-100">
+            <h4 className="mb-1 flex items-center gap-2 text-sm font-medium text-blue-100 sm:text-base">
               <img
                 src="/rituals/soundCard/ico1.svg"
                 alt="play icon"
@@ -316,27 +322,37 @@ export function Card({
               />
               Rytuał
             </h4>
-            <p className="text-sm text-blue-300/80">{ritual}</p>
+            <p className="text-xs leading-tight text-blue-300/80 sm:text-sm">
+              {ritual}
+            </p>
           </div>
         </div>
       </div>
-      <div className="flex space-x-4">
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-blue-600 px-4 py-2 text-sm font-medium outline-none transition-all hover:bg-blue-700 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+        <button
+          type="button"
+          className="flex w-full items-center justify-center gap-4 rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-blue-700 sm:w-auto"
+        >
           <img
             src="/map/ico2.svg"
             alt="button plane icon"
-            className="h-[14px] w-[14px] filter"
+            className="h-3.5 w-3.5 filter"
             style={{
               filter: 'invert(100%) brightness(100%)',
             }}
           />
           Zaplanuj wizytę
         </button>
-        <button className="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-blue-700/30 bg-slate-700/50 px-4 py-2 text-sm font-medium text-blue-200 outline-none transition-all focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 has-[>svg]:px-3 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+
+        <button
+          type="button"
+          className="flex w-full items-center justify-center gap-4 rounded-md border border-blue-700/30 bg-slate-700/50 px-3 py-2 text-sm font-medium text-blue-200 transition hover:bg-slate-700/60 sm:w-auto"
+        >
           <img
             src="/rituals/soundCard/ico1.svg"
             alt="button play icon"
-            className="h-[14px] w-[14px] filter"
+            className="h-3.5 w-3.5 filter"
             style={{
               filter:
                 'invert(80%) sepia(15%) saturate(1200%) hue-rotate(180deg) brightness(100%) contrast(90%)',
